@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import GlobalStyles, { theme } from "styles/global";
+import Authentication from 'screens/authenticate'
+import Home from 'screens/home'
+import { useQuery } from "react-query";
+import { UserAPI } from "apis";
+import { useAppDispatch } from "states/hooks";
+import { authActions } from "states/slices";
 
-function App() {
+function App() { 
+  const dispatch = useAppDispatch()
+  const { isLoading } = useQuery('getProfile', UserAPI.getProfile, {
+    onSuccess: (res) => {
+      dispatch(authActions.login(res.data))
+    }
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <GlobalStyles />
+      <HashRouter>
+        <Routes>
+          <Route element={<Authentication/>} path="auth" />
+          <Route element={<Home/>} path="/"/>
+        </Routes>
+      </HashRouter>
+    </ThemeProvider>
   );
 }
 
