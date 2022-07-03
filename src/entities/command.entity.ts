@@ -1,4 +1,3 @@
-
 import { BotEntity } from './bot.entity'
 
 export interface CommandEntity {

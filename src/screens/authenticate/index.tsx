@@ -1,3 +1,4 @@
+import { Box } from '@mui/material'
 import Logo from 'components/logo'
 import { useState } from 'react'
 // import { useAppSelector } from 'states/hooks'
@@ -14,7 +15,6 @@ export default function Authentication() {
 
     return (
         <Wrapper>
-            <Logo/>
             {isLogin && <Login switchForm={switchForm} />}
             {!isLogin && <Register switchForm={switchForm} />}
         </Wrapper>

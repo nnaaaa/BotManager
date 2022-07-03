@@ -1,9 +1,12 @@
 import { LoadingButton } from '@mui/lab'
 import { Button, Divider, TextField, Typography } from '@mui/material'
+import { unwrapResult } from '@reduxjs/toolkit'
 import { AuthAPI } from 'apis/auth.api'
 import { useFormik } from 'formik'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from 'states/hooks'
+import { authActions } from 'states/slices'
 import { loginValidate } from 'utils/yup'
 import { useStyle } from '../styles'
 
@@ -13,15 +16,9 @@ interface Props {
 
 export default function Login({ switchForm }: Props) {
     const style = useStyle()
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const { isLoading, mutate, error,isError } = useMutation(AuthAPI.login, {
-
-        onSuccess: () => {
-            navigate('/', { replace: true })
-        }
-    })
-
-
+    const { isLoading, errors: authError } = useAppSelector(state => state.auth)
     const { errors, values, touched, handleSubmit, handleChange } = useFormik({
         initialValues: {
             account: '',
@@ -30,20 +27,25 @@ export default function Login({ switchForm }: Props) {
         validationSchema: loginValidate,
         onSubmit: async (values, { setFieldError }) => {
             try {
-                // await dispatch(authActions.loginAsync(values))
-                // unwrapResult(await dispatch(userActions.getProfile()))
-                mutate(values)
+                await dispatch(authActions.loginAsync(values))
+                unwrapResult(await dispatch(authActions.getProfile()))
+                navigate('/', { replace: true })
             } catch {
-                setFieldError('account','Account doesn\'t exist')
+                setFieldError('account', "Account doesn't exist")
             }
         },
     })
 
     return (
         <form className={style.form} onSubmit={handleSubmit}>
-            {/* <Typography variant="h4" fontWeight={600}>
+            <Typography variant="h4" fontWeight={600}>
                 Welcome back!
-            </Typography> */}
+            </Typography>
+            <Typography variant="subtitle1">
+                We're so excited to see you again!
+            </Typography>
+
+            <Divider sx={{ my: 2 }} />
 
             <TextField
                 name="account"
@@ -69,7 +71,7 @@ export default function Login({ switchForm }: Props) {
                 value={values.password}
             />
 
-            {isError && (
+            {authError && (
                 <Typography color="error" gutterBottom>
                     Account and password are incorrect
                 </Typography>

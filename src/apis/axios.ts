@@ -26,7 +26,7 @@ AxiosClient.interceptors.request.use(async (config: AxiosRequestConfig) => {
 AxiosClient.interceptors.response.use(
     (response) => {
         if (!response) return
-       
+
         if (response.headers) {
             if (response.headers.accesstoken) {
                 Cookie.set('accesstoken', response.headers.accesstoken)
@@ -41,14 +41,12 @@ AxiosClient.interceptors.response.use(
     async (error: AxiosError) => {
         if (error.status === '401') {
             const refreshToken = Cookie.get('refreshtoken')
-            console.log({refreshToken})
-            if (!refreshToken)
-                throw error
-            
+            console.log({ refreshToken })
+            if (!refreshToken) throw error
+
             try {
                 await AuthAPI.refreshToken(refreshToken)
-            }
-            catch (e) {
+            } catch (e) {
                 Cookie.remove('accesstoken')
                 Cookie.remove('refreshtoken')
             }
@@ -57,6 +55,5 @@ AxiosClient.interceptors.response.use(
         throw error
     }
 )
-
 
 export { AxiosClient }

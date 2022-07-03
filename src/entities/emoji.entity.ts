@@ -1,11 +1,8 @@
 import { GuildEntity } from './guild.entity'
 import { ReactEntity } from './react.entity'
 
-
-export interface  EmojiEntity {
-
+export interface EmojiEntity {
     emojiId: string
-
 
     imageUrl: string
 

@@ -21,7 +21,7 @@ export const useStyle = makeStyles({
 })
 
 export const Wrapper = styled.main`
-    min-height: 100vh;
+    min-height: calc(100vh - 50px);
     display: flex;
     flex-direction: column;
     align-items: center;

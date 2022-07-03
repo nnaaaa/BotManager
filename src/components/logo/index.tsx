@@ -1,11 +1,16 @@
-import { Box } from '@mui/material'
+import { Avatar, Box } from '@mui/material'
 import { Link } from 'react-router-dom'
 import * as icon from 'assets/icon.png'
 
-function Logo() {
+interface Props {
+    width?: number
+    height?: number
+}
+
+function Logo({ width = 52, height = 52 }: Props) {
     return (
-        <Box style={{ position:'absolute',width:80,height:80,top:20,left:20 }} component={Link} to="/">
-            <img src={icon.default} />
+        <Box style={{ cursor: 'pointer' }} sx={{ width, height }} component={Link} to="/">
+            <Avatar src={icon.default} sx={{ width, height }} />
         </Box>
     )
 }

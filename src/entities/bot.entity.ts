@@ -1,4 +1,3 @@
-
 import { CommandEntity } from './command.entity'
 import { MemberEntity } from './member.entity'
 import { Permission } from './role.entity'

@@ -6,9 +6,7 @@ import { ReactEntity } from './react.entity'
 import { RoleEntity } from './role.entity'
 import { UserEntity } from './user.entity'
 
-
 export interface MemberEntity {
-
     memberId: string
 
     joinAt: Date
@@ -30,5 +28,4 @@ export interface MemberEntity {
     sentMessages: MessageEntity[]
 
     sentReacts: ReactEntity[]
-
 }

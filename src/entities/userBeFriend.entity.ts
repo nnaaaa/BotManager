@@ -6,7 +6,6 @@ export enum FriendStatus {
     BLOCKED = 'blocked',
 }
 
-
 export interface UserBeFriendEntity {
     id: string
 

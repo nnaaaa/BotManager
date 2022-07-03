@@ -1,8 +1,5 @@
-
 function ManageBot() {
-  return (
-    <div>ManageBot</div>
-  )
+    return <div>ManageBot</div>
 }
 
 export default ManageBot
