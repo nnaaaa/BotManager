@@ -19,5 +19,5 @@ export interface UserEntity {
 
     joinedGuilds: MemberEntity[]
 
-    createdBots: MemberEntity[]
+    createdBots: BotEntity[]
 }

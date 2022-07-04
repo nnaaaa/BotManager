@@ -1,9 +1,7 @@
 import { LoadingButton } from '@mui/lab'
-import { Button, Divider, TextField, Typography } from '@mui/material'
+import { Box, Button, Divider, TextField, Typography } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
-import { AuthAPI } from 'apis/auth.api'
 import { useFormik } from 'formik'
-import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { authActions } from 'states/slices'
@@ -18,7 +16,7 @@ export default function Login({ switchForm }: Props) {
     const style = useStyle()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const { isLoading, errors: authError } = useAppSelector(state => state.auth)
+    const { isLoading, errors: authError } = useAppSelector((state) => state.auth)
     const { errors, values, touched, handleSubmit, handleChange } = useFormik({
         initialValues: {
             account: '',
@@ -37,7 +35,13 @@ export default function Login({ switchForm }: Props) {
     })
 
     return (
-        <form className={style.form} onSubmit={handleSubmit}>
+        <Box
+            component="form"
+            className={style.form}
+            onSubmit={handleSubmit}
+            sx={{ '&:hover':{borderColor: 'primary.main'}, borderColor: 'text.disabled' }}
+            
+        >
             <Typography variant="h4" fontWeight={600}>
                 Welcome back!
             </Typography>
@@ -91,6 +95,6 @@ export default function Login({ switchForm }: Props) {
             <Button onClick={switchForm} variant="contained">
                 Sign Up
             </Button>
-        </form>
+        </Box>
     )
 }

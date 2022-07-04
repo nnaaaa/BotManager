@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserAPI } from 'apis'
-import { AuthAPI } from 'apis/auth.api'
+import { AuthAPI, UserAPI } from 'apis'
+import { BotEntity } from 'entities/bot.entity'
 import { UserEntity } from 'entities/user.entity'
 import { LoginDto } from 'screens/authenticate/login/dtos/local.dto'
 
 interface IinitState {
-    isLoading: boolean,
-    errors: any,
+    isLoading: boolean
+    errors: any
     profile: UserEntity | null
 }
 
@@ -18,11 +18,9 @@ const initialState: IinitState = {
 const loginAsync = createAsyncThunk('auth/login', async (loginDto: LoginDto) => {
     try {
         await AuthAPI.login(loginDto)
-    }
-    catch (e) {
+    } catch (e) {
         console.error(e)
     }
-
 })
 
 const getProfile = createAsyncThunk('auth/getProfile', async () => {
@@ -30,11 +28,9 @@ const getProfile = createAsyncThunk('auth/getProfile', async () => {
         const res = await UserAPI.getProfile()
 
         return res.data
-    }
-    catch (e) {
+    } catch (e) {
         console.error(e)
     }
-
 })
 
 // const registerAsync = createAsyncThunk(
@@ -57,8 +53,19 @@ const authSlice = createSlice({
         //     state.profile = action.payload
         // },
         logout: (state) => {
+            state.errors = null
             state.profile = null
         },
+        addBot: (state, action: PayloadAction<BotEntity>) => {
+            if (state.profile)
+                state.profile.createdBots.unshift(action.payload)
+        },
+        removeBot: (state, action: PayloadAction<BotEntity>) => {
+            if (state.profile)
+                state.profile.createdBots = state.profile.createdBots.filter(
+                    (bot) => bot.botId !== action.payload.botId
+                )
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -80,25 +87,25 @@ const authSlice = createSlice({
                 state.isLoading = false
                 state.errors = 'Fail to get user profile'
             })
-            .addCase(getProfile.fulfilled, (state,action) => {
+            .addCase(getProfile.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.profile = action.payload
             })
-            // .addCase(registerAsync.pending, (state) => {
-            //     state.loading = true
-            // })
-            // .addCase(registerAsync.rejected, (state) => {
-            //     state.loading = false
-            //     state.error = 'Fail to register'
-            // })
-            // .addCase(registerAsync.fulfilled, (state) => {
-            //     state.loading = false
-            // })
+        // .addCase(registerAsync.pending, (state) => {
+        //     state.loading = true
+        // })
+        // .addCase(registerAsync.rejected, (state) => {
+        //     state.loading = false
+        //     state.error = 'Fail to register'
+        // })
+        // .addCase(registerAsync.fulfilled, (state) => {
+        //     state.loading = false
+        // })
     },
 })
 
-export const { actions, reducer: authReducer } = authSlice
-export const authActions = Object.assign(actions, {
+export const { actions:authActionsDefault, reducer: authReducer } = authSlice
+export const authActions = Object.assign(authActionsDefault, {
     loginAsync,
-    getProfile
+    getProfile,
 })

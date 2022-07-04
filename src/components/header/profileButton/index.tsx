@@ -1,24 +1,33 @@
-import { Avatar, Button, CircularProgress, IconButton, Menu, MenuItem, Typography } from '@mui/material'
+import {
+    Avatar,
+    Button,
+    CircularProgress,
+    IconButton,
+    Menu,
+    MenuItem,
+    Typography,
+} from '@mui/material'
 import Cookies from 'js-cookie'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { authActions } from 'states/slices'
 
-function Setting() {
+export function ProfileButton() {
     const dispatch = useAppDispatch()
-    const {profile,isLoading} = useAppSelector((state) => state.auth)
+    const { profile, isLoading } = useAppSelector((state) => state.auth)
 
     const [toggle, setToggle] = useState(false)
     const ref = useRef(null)
 
     const onLogout = () => {
         dispatch(authActions.logout())
+        setToggle((pre)=> !pre)
         Cookies.remove('accesstoken')
         Cookies.remove('refreshtoken')
     }
 
-    if (isLoading) return <CircularProgress/>
+    if (isLoading) return <CircularProgress />
 
     if (!profile)
         return (
@@ -27,6 +36,7 @@ function Setting() {
                     component={Link}
                     to="/auth"
                     variant="text"
+                    color="inherit"
                     sx={{ textTransform: 'capitalize' }}
                 >
                     Login
@@ -67,4 +77,3 @@ function Setting() {
     )
 }
 
-export default Setting

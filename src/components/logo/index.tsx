@@ -7,12 +7,10 @@ interface Props {
     height?: number
 }
 
-function Logo({ width = 52, height = 52 }: Props) {
+export function Logo({ width = 52, height = 52 }: Props) {
     return (
         <Box style={{ cursor: 'pointer' }} sx={{ width, height }} component={Link} to="/">
             <Avatar src={icon.default} sx={{ width, height }} />
         </Box>
     )
 }
-
-export default Logo

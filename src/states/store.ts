@@ -1,8 +1,9 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit'
-import { authReducer } from './slices'
+import { authReducer, botReducer } from './slices'
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    bot: botReducer
 })
 
 export const store = configureStore({

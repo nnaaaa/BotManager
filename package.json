@@ -5,6 +5,7 @@
     "dependencies": {
         "@emotion/react": "^11.9.3",
         "@emotion/styled": "^11.9.3",
+        "@mui/icons-material": "^5.8.4",
         "@mui/lab": "^5.0.0-alpha.88",
         "@mui/material": "^5.8.6",
         "@mui/styles": "^5.8.6",
@@ -24,6 +25,7 @@
         "js-cookie": "^3.0.1",
         "query-string": "^7.1.1",
         "react": "^18.2.0",
+        "react-copy-to-clipboard": "^5.1.0",
         "react-dom": "^18.2.0",
         "react-query": "^3.39.1",
         "react-redux": "^8.0.2",
@@ -60,6 +62,7 @@
         ]
     },
     "devDependencies": {
-        "@types/js-cookie": "^3.0.2"
+        "@types/js-cookie": "^3.0.2",
+        "@types/react-copy-to-clipboard": "^5.0.3"
     }
 }

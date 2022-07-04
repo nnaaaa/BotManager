@@ -1,4 +1,5 @@
-import { createTheme } from '@mui/material'
+import { Theme } from '@emotion/react'
+import { createTheme, SxProps } from '@mui/material'
 import { createGlobalStyle } from 'styled-components'
 
 const globalStyles = createGlobalStyle`
@@ -33,24 +34,10 @@ const globalStyles = createGlobalStyle`
         border-radius: 10px;
         background:gray;
     }
-    ::-webkit-scrollbar-thumb:hover {
+    /* ::-webkit-scrollbar-thumb:hover {
         background:#EA63FD;
-    }
+    } */
 `
-
-export const theme = createTheme({
-    // palette: {
-    //     primary: {
-    //         main: 'rgba(236, 58, 245,0.7)',
-    //     },
-    //     secondary: {
-    //         main: '#5CD6F5',
-    //     },
-    // },
-    // palette: {
-    //     mode: 'dark',
-    // },
-})
 
 export const linearBackground = `linear-gradient(to right bottom,
     rgba(24, 1, 86,0.4),
@@ -60,3 +47,11 @@ export const linearBackground = `linear-gradient(to right bottom,
     rgba(93, 214, 245,0.4))`
 
 export default globalStyles
+
+
+export const borderStyle: SxProps<Theme> = {
+    borderStyle: 'solid',
+    borderWidth:1,
+    borderColor: 'action.disabled',
+    '&:hover': { borderColor: 'primary.main' },
+}

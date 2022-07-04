@@ -1,12 +1,19 @@
-import { CssBaseline, ThemeProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider, useTheme } from '@mui/material'
+import { Header } from 'components'
 import { useLogin } from 'hooks'
+import { useContext } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
-import Authentication from 'screens/authenticate'
-import Home from 'screens/home'
-import Header from 'screens/home/header'
-import GlobalStyles, { theme } from 'styles/global'
+import { Authentication, Document, Home, ManageBot } from 'screens'
+import { CreateBot } from 'screens/manageBot/createBot'
+import { GeneralInfomation } from 'screens/manageBot/general'
+import { Permission } from 'screens/manageBot/permission'
+import { ColorModeContext } from 'states/context/colorMode'
+import { Wrapper } from 'styles'
+import GlobalStyles from 'styles/global'
 
 function App() {
+    const { theme } = useContext(ColorModeContext)
+
     useLogin()
 
     return (
@@ -14,11 +21,19 @@ function App() {
             <CssBaseline />
             <GlobalStyles />
             <HashRouter>
-                <Header />
-                <Routes>
-                    <Route element={<Authentication />} path="auth" />
-                    <Route element={<Home />} path="/" />
-                </Routes>
+                <Wrapper>
+                    <Header />
+                    <Routes>
+                        <Route element={<Authentication />} path="auth" />
+                        <Route element={<Document />} path="doc" />
+                        <Route element={<ManageBot />} path="bot">
+                            <Route element={<GeneralInfomation />} path="general" />
+                            <Route element={<Permission />} path="permission" />
+                            <Route element={<CreateBot />} path="create" />
+                        </Route>
+                        <Route element={<Home />} path="/" />
+                    </Routes>
+                </Wrapper>
             </HashRouter>
         </ThemeProvider>
     )

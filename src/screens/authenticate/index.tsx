@@ -1,17 +1,19 @@
-import { Box } from '@mui/material'
-import Logo from 'components/logo'
 import { useState } from 'react'
-// import { useAppSelector } from 'states/hooks'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from 'states/hooks'
 import Login from './login'
 import Register from './register'
 import { Wrapper } from './styles'
 
-export default function Authentication() {
+export function Authentication() {
     const [isLogin, setIsLogin] = useState(true)
     const switchForm = () => setIsLogin(!isLogin)
-    // const status = useAppSelector((state) => state.auth.state)
+    const navigate = useNavigate()
+    const { profile } = useAppSelector((state) => state.auth)
 
-    // if (status === 'logged') return <Redirect to="/" />
+    if (profile) {
+        navigate('bot', { replace: true })
+    }
 
     return (
         <Wrapper>
