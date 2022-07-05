@@ -17,7 +17,7 @@ export function AvatarCard({ url }: Props) {
             justifyContent="center"
         >
             <Avatar sx={{ width: '128px', height: '128px', mb: 2 }} src={url} />
-            <Stack direction='row'>
+            <Stack direction="row">
                 <Typography variant="caption" fontSize={12}>
                     Size:{' '}
                 </Typography>

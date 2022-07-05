@@ -1,15 +1,14 @@
 import { Add, Handyman, Home } from '@mui/icons-material'
 import {
     Button,
-    CircularProgress,
     Grid,
     ListItemButton,
     ListItemIcon,
     ListItemText,
     Stack,
 } from '@mui/material'
+import { unwrapResult } from '@reduxjs/toolkit'
 import { Loading } from 'components/loading'
-import { BotEntity } from 'entities/bot.entity'
 import { useEffect, useState } from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
@@ -22,18 +21,37 @@ type Screen = 'info' | 'permission' | 'create'
 export function ManageBot() {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const { profile, isLoading } = useAppSelector((state) => state.auth)
+    const { yourBots, isLoading } = useAppSelector((state) => state.bot)
+    const { profile, isLoading: isAuthLoading } = useAppSelector((state) => state.auth)
     const [currentScreen, setCurrentScreen] = useState<Screen>('create')
 
     useEffect(() => {
-        if (profile && profile.createdBots && profile.createdBots.length > 0) {
-            dispatch(botActions.setBot(profile.createdBots[0] as BotEntity))
-            setCurrentScreen('info')
-            navigate('/bot/general')
+        const fetchBot = async () => {
+            if (yourBots.length > 0) {
+                unwrapResult(dispatch(botActions.setBot(yourBots[0])))
+            } else {
+                throw new Error('You have not created bot yet')
+            }
         }
-    }, [profile])
+        fetchBot()
+            .then(() => {
+                setCurrentScreen('info')
+                navigate('/bot/general')
+            })
+            .catch(() => {
+                setCurrentScreen('create')
+                navigate('/bot/create')
+            })
+    }, [yourBots])
 
-    if (isLoading) {
+    useEffect(() => {
+        const fetchYourBots = async () => {
+            unwrapResult(await dispatch(botActions.getFromAuthor()))
+        }
+        fetchYourBots().then(() => {})
+    }, [])
+
+    if (isAuthLoading) {
         return (
             <Wrapper>
                 <Loading />
@@ -68,14 +86,14 @@ export function ManageBot() {
                         </Button>
                     </Stack>
 
-                    {profile.createdBots && profile.createdBots.length > 0 && (
+                    {yourBots.length > 0 && (
                         <>
-                            <Stack sx={{ mt: 4,width:'100%' }}>
+                            <Stack sx={{ mt: 4, width: '100%' }}>
                                 <Title>Select bot</Title>
                                 <SelectBot />
                             </Stack>
 
-                            <Stack direction="column" sx={{ mt: 4,width:'100%' }}>
+                            <Stack direction="column" sx={{ mt: 4, width: '100%' }}>
                                 <Title>Bot Setting</Title>
                                 <ListItemButton
                                     component={Link}

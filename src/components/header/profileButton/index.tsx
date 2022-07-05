@@ -22,12 +22,12 @@ export function ProfileButton() {
 
     const onLogout = () => {
         dispatch(authActions.logout())
-        setToggle((pre)=> !pre)
+        setToggle((pre) => !pre)
         Cookies.remove('accesstoken')
         Cookies.remove('refreshtoken')
     }
 
-    if (isLoading) return <CircularProgress />
+    if (isLoading) return <CircularProgress size="22px" />
 
     if (!profile)
         return (
@@ -76,4 +76,3 @@ export function ProfileButton() {
         </>
     )
 }
-

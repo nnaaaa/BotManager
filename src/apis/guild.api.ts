@@ -7,7 +7,9 @@ export class GuildAPI {
     static namespace = 'guild'
 
     static async getJoined() {
-        const res = await AxiosClient.get<any,AxiosResponse<MemberEntity[]>>(`${GuildAPI.namespace}/getJoined`)
-        return res.data        
+        const res = await AxiosClient.get<any, AxiosResponse<MemberEntity[]>>(
+            `${GuildAPI.namespace}/getJoined`
+        )
+        return res.data
     }
 }

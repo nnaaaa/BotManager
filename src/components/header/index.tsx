@@ -28,7 +28,7 @@ export function Header() {
                                 Quick Start
                             </Button>
 
-                            <BotButton/>
+                            <BotButton />
 
                             <Button
                                 className={style.button}

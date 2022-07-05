@@ -103,8 +103,8 @@ export function ListGuild() {
                                 <ListItemText
                                     primary={nickname}
                                     primaryTypographyProps={{
-										fontSize: 14,
-										color:'text.secondary'
+                                        fontSize: 14,
+                                        color: 'text.secondary',
                                     }}
                                 />
                             </ListItem>

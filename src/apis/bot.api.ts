@@ -1,13 +1,56 @@
 import { AxiosResponse } from 'axios'
 import { BotEntity } from 'entities/bot.entity'
-import { CreateBotDto } from 'screens/manageBot/dtos'
+import {
+    CreateBotDto,
+    DeleteBotDto,
+    GenSecretKeyDto,
+    UpdateBotDto,
+} from 'screens/manageBot/dtos'
 import { AxiosClient } from './axios'
 
 export class BotAPI {
     static namespace = 'bot'
 
     static async create(createBotDto: CreateBotDto) {
-        const res = await AxiosClient.post<any,AxiosResponse<BotEntity>>(`${BotAPI.namespace}`, createBotDto)
+        const res = await AxiosClient.post<any, AxiosResponse<BotEntity>>(
+            `${BotAPI.namespace}`,
+            createBotDto
+        )
+        return res
+    }
+
+    static async update(updateBotDto: UpdateBotDto) {
+        const res = await AxiosClient.put<UpdateBotDto, AxiosResponse<BotEntity>>(
+            `${BotAPI.namespace}`,
+            updateBotDto
+        )
+        return res
+    }
+
+    static async getOne(botId: string) {
+        const res = await AxiosClient.get<any, AxiosResponse<BotEntity>>(
+            `${BotAPI.namespace}/${botId}`
+        )
+        return res
+    }
+
+    static async getFromAuthor() {
+        const res = await AxiosClient.get<any, AxiosResponse<BotEntity[]>>(
+            `${BotAPI.namespace}/fromAuthor`
+        )
+        return res
+    }
+
+    static async delete(deleteBotDto: DeleteBotDto) {
+        const res = await AxiosClient.delete(`${BotAPI.namespace}/${deleteBotDto.botId}`)
+        return res
+    }
+
+    static async generateNewSecretKey(genKeyDto: GenSecretKeyDto) {
+        const res = await AxiosClient.post<GenSecretKeyDto, AxiosResponse<string>>(
+            `${BotAPI.namespace}/genSecretKey`,
+            genKeyDto
+        )
         return res
     }
 }

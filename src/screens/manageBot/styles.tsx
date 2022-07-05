@@ -14,5 +14,8 @@ export const Left = styled.div`
     padding: 2rem 2rem;
 `
 
-export const Title = ({ children }: { children: string }) => <Typography variant='h6' color='text.secondary' sx={{px:1}} gutterBottom>{children}</Typography>
-
+export const Title = ({ children }: { children: string }) => (
+    <Typography variant="h6" color="text.secondary" sx={{ px: 1 }} gutterBottom>
+        {children}
+    </Typography>
+)

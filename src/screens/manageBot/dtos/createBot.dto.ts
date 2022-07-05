@@ -1,5 +1,4 @@
 import { Permission } from 'entities/role.entity'
-import { CreateCommandDto } from './createCommand.dto'
 
 export interface CreateBotDto {
     name: string

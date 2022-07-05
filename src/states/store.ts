@@ -3,7 +3,7 @@ import { authReducer, botReducer } from './slices'
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    bot: botReducer
+    bot: botReducer,
 })
 
 export const store = configureStore({

@@ -1,9 +1,9 @@
 import { ChangeEvent, useState } from 'react'
-import { CreateBotDto } from '../dtos'
+import { CreateBotDto, UpdateBotDto } from './dtos'
 
-export const useCreateBot = () => {
-    const [name, setName] = useState<string>('')
-    const [description, setDescription] = useState<string>('')
+export const useManageBot = (defaultInfo: Omit<UpdateBotDto, 'botId'>) => {
+    const [name, setName] = useState<string>(defaultInfo.name || '')
+    const [description, setDescription] = useState<string>(defaultInfo.description || '')
     const [imageFile, setImageFile] = useState<File | undefined>()
     const [previewImage, setPreviewImage] = useState<string | undefined>('')
 
@@ -17,8 +17,6 @@ export const useCreateBot = () => {
             console.log(e)
         }
     }
-
-
 
     const clearImages = () => {
         setImageFile(undefined)

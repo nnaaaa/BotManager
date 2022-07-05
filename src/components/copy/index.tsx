@@ -1,6 +1,6 @@
 import { Circle, Star, Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 interface Props {
@@ -11,6 +11,10 @@ interface Props {
 export function Copy({ text, isHidden = false }: Props) {
     const [isCopied, setCopy] = useState(false)
     const [isVisible, setVisible] = useState(false)
+
+    useEffect(() => {
+        setCopy(false)
+    }, [text])
 
     return (
         <Stack
@@ -51,7 +55,12 @@ export function Copy({ text, isHidden = false }: Props) {
                 </IconButton>
             )}
             <CopyToClipboard text={text} onCopy={() => setCopy(true)}>
-                <Button>{isCopied ? `Copied!` : `Copy`}</Button>
+                <Button
+                    variant={isCopied ? 'contained' : 'outlined'}
+                    sx={{ textTransform: 'capitalize' }}
+                >
+                    {isCopied ? `Copied!` : `Copy`}
+                </Button>
             </CopyToClipboard>
         </Stack>
     )

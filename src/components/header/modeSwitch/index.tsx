@@ -10,10 +10,8 @@ export function ModeSwitch() {
     return (
         <Stack direction="row" alignItems="center">
             <WbSunny />
-            <Switch onChange={toggleColorMode} color='default'/>
+            <Switch onChange={toggleColorMode} color="default" />
             <DarkMode />
         </Stack>
     )
 }
-
- 

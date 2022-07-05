@@ -6,22 +6,20 @@ import { FormEvent, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { authActions, botActions } from 'states/slices'
 import { Title } from './styles'
-import { useCreateBot } from './useCreateBot'
+import { useManageBot } from '../useManageBot'
 
 export function CreateBot() {
     const dispatch = useAppDispatch()
     const { profile: userProfile } = useAppSelector((state) => state.auth)
     const { profile, isLoading } = useAppSelector((state) => state.bot)
     const { name, description, setName, setDescription, getContent, previewImage } =
-        useCreateBot()
+        useManageBot({})
 
     const handleSubmit = async (e: FormEvent) => {
         try {
             e.preventDefault()
             const dto = getContent()
-            console.log(dto)
             unwrapResult(await dispatch(botActions.createBot(dto)))
-
         } catch (e) {
             console.log(e)
         }
@@ -29,9 +27,8 @@ export function CreateBot() {
 
     useEffect(() => {
         if (profile && userProfile) {
-            const isExist = userProfile.createdBots.some(b => b.botId === profile.botId)
-            if (!isExist)
-                dispatch(authActions.addBot(profile))
+            const isExist = userProfile.createdBots.some((b) => b.botId === profile.botId)
+            if (!isExist) dispatch(authActions.addBot(profile))
         }
     }, [profile])
 

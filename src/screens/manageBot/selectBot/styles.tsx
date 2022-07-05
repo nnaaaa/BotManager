@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Typography } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 
 export const useStyle = makeStyles({
     wrapper: {
@@ -7,4 +7,3 @@ export const useStyle = makeStyles({
         padding: 2,
     },
 })
-

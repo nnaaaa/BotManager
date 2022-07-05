@@ -1,8 +1,3 @@
-
-
 export function FindBot() {
-    return (
-      <div>CreateBot</div>
-    )
-  }
-  
+    return <div>CreateBot</div>
+}

@@ -48,10 +48,9 @@ export const linearBackground = `linear-gradient(to right bottom,
 
 export default globalStyles
 
-
 export const borderStyle: SxProps<Theme> = {
     borderStyle: 'solid',
-    borderWidth:1,
+    borderWidth: 1,
     borderColor: 'action.disabled',
     '&:hover': { borderColor: 'primary.main' },
 }

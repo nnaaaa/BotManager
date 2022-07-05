@@ -1,5 +1,4 @@
-import { makeStyles } from '@mui/styles';
-
+import { makeStyles } from '@mui/styles'
 
 export const useStyle = makeStyles({
     avatarWrapper: {
@@ -7,4 +6,3 @@ export const useStyle = makeStyles({
         borderRadius: 8,
     },
 })
-

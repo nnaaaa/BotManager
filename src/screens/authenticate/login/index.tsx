@@ -5,14 +5,12 @@ import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { authActions } from 'states/slices'
-import { loginValidate } from 'utils/yup'
+import { loginValidate } from 'utils/validation'
 import { useStyle } from '../styles'
 
-interface Props {
-    switchForm: () => void
-}
+interface Props {}
 
-export default function Login({ switchForm }: Props) {
+export default function Login({}: Props) {
     const style = useStyle()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -39,8 +37,10 @@ export default function Login({ switchForm }: Props) {
             component="form"
             className={style.form}
             onSubmit={handleSubmit}
-            sx={{ '&:hover':{borderColor: 'primary.main'}, borderColor: 'text.disabled' }}
-            
+            sx={{
+                '&:hover': { borderColor: 'primary.main' },
+                borderColor: 'text.disabled',
+            }}
         >
             <Typography variant="h4" fontWeight={600}>
                 Welcome back!
@@ -87,14 +87,10 @@ export default function Login({ switchForm }: Props) {
                 type="submit"
                 loading={isLoading}
             >
-                Submit
+                Login
             </LoadingButton>
 
             <Divider flexItem sx={{ my: 2 }} />
-
-            <Button onClick={switchForm} variant="contained">
-                Sign Up
-            </Button>
         </Box>
     )
 }

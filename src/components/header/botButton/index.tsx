@@ -27,7 +27,7 @@ export function BotButton() {
                     horizontal: 'left',
                 }}
             >
-                <Stack direction="column" sx={{p:1}}>
+                <Stack direction="column">
                     <Button
                         className={style.button}
                         component={Link}

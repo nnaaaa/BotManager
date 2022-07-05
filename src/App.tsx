@@ -6,7 +6,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom'
 import { Authentication, Document, Home, ManageBot } from 'screens'
 import { CreateBot } from 'screens/manageBot/createBot'
 import { GeneralInfomation } from 'screens/manageBot/general'
-import { Permission } from 'screens/manageBot/permission'
+import { PermissionScreen } from 'screens/manageBot/permission'
 import { ColorModeContext } from 'states/context/colorMode'
 import { Wrapper } from 'styles'
 import GlobalStyles from 'styles/global'
@@ -28,7 +28,7 @@ function App() {
                         <Route element={<Document />} path="doc" />
                         <Route element={<ManageBot />} path="bot">
                             <Route element={<GeneralInfomation />} path="general" />
-                            <Route element={<Permission />} path="permission" />
+                            <Route element={<PermissionScreen />} path="permission" />
                             <Route element={<CreateBot />} path="create" />
                         </Route>
                         <Route element={<Home />} path="/" />

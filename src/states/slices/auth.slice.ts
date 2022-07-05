@@ -3,6 +3,7 @@ import { AuthAPI, UserAPI } from 'apis'
 import { BotEntity } from 'entities/bot.entity'
 import { UserEntity } from 'entities/user.entity'
 import { LoginDto } from 'screens/authenticate/login/dtos/local.dto'
+import { UpdateBotDto } from 'screens/manageBot/dtos'
 
 interface IinitState {
     isLoading: boolean
@@ -57,15 +58,24 @@ const authSlice = createSlice({
             state.profile = null
         },
         addBot: (state, action: PayloadAction<BotEntity>) => {
-            if (state.profile)
-                state.profile.createdBots.unshift(action.payload)
+            if (state.profile) state.profile.createdBots.unshift(action.payload)
+        },
+        updateBot: (state, action: PayloadAction<UpdateBotDto>) => {
+            if (state.profile) {
+                state.profile.createdBots = state.profile.createdBots.map((bot) => {
+                    if (bot.botId === action.payload.botId) {
+                        return { ...bot, ...action.payload }
+                    }
+                    return bot
+                })
+            }
         },
         removeBot: (state, action: PayloadAction<BotEntity>) => {
             if (state.profile)
                 state.profile.createdBots = state.profile.createdBots.filter(
                     (bot) => bot.botId !== action.payload.botId
                 )
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -104,7 +114,7 @@ const authSlice = createSlice({
     },
 })
 
-export const { actions:authActionsDefault, reducer: authReducer } = authSlice
+export const { actions: authActionsDefault, reducer: authReducer } = authSlice
 export const authActions = Object.assign(authActionsDefault, {
     loginAsync,
     getProfile,
