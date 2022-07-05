@@ -7,30 +7,28 @@ import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { authActions, botActions } from 'states/slices'
 import { Title } from './styles'
 import { useManageBot } from '../useManageBot'
+import { useFormik } from 'formik'
+import { botInfoValidate } from 'utils/validation'
 
 export function CreateBot() {
     const dispatch = useAppDispatch()
-    const { profile: userProfile } = useAppSelector((state) => state.auth)
-    const { profile, isLoading } = useAppSelector((state) => state.bot)
-    const { name, description, setName, setDescription, getContent, previewImage } =
-        useManageBot({})
+    const { isLoading } = useAppSelector((state) => state.bot)
 
-    const handleSubmit = async (e: FormEvent) => {
-        try {
-            e.preventDefault()
-            const dto = getContent()
-            unwrapResult(await dispatch(botActions.createBot(dto)))
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    useEffect(() => {
-        if (profile && userProfile) {
-            const isExist = userProfile.createdBots.some((b) => b.botId === profile.botId)
-            if (!isExist) dispatch(authActions.addBot(profile))
-        }
-    }, [profile])
+    const { errors, values, touched, handleSubmit, handleChange } = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            name: '',
+            description: '',
+        },
+        validationSchema: botInfoValidate,
+        onSubmit: async (values, { setFieldError }) => {
+            try {
+                unwrapResult(await dispatch(botActions.createBot(values)))
+            } catch {
+                setFieldError('name','Bot name is already taken')
+            }
+        },
+    })
 
     return (
         <Box component="form" onSubmit={handleSubmit} width="100%">
@@ -43,25 +41,31 @@ export function CreateBot() {
             <Stack direction="row" spacing={4} sx={{ mt: 6, flex: 1 }}>
                 <Stack>
                     <Title>Bot icon</Title>
-                    <AvatarCard url={previewImage} />
+                    <AvatarCard url={''} />
                 </Stack>
 
                 <Stack spacing={4} sx={{ flex: 1 }}>
                     <Stack>
                         <Title>Name</Title>
                         <TextField
+                            name="name"
                             variant="outlined"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            value={values.name}
+                            onChange={handleChange}
+                            error={touched.name && Boolean(errors.name)}
+                            helperText={touched.name && errors.name}
                         />
                     </Stack>
 
                     <Stack>
                         <Title>Description</Title>
                         <TextField
+                            name="description"
                             variant="outlined"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={values.description}
+                            onChange={handleChange}
+                            error={touched.description && Boolean(errors.description)}
+                            helperText={touched.description && errors.description}
                         />
                     </Stack>
                 </Stack>

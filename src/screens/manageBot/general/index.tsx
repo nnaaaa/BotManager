@@ -31,7 +31,9 @@ export function GeneralInfomation() {
                         botActions.updateBot({ botId: profile.botId, ...values })
                     )
                 )
-            } catch {}
+            } catch {
+                setFieldError('name','Bot name is already taken')
+            }
         },
     })
 

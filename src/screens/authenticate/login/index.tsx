@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { authActions } from 'states/slices'
 import { loginValidate } from 'utils/validation'
 import { useStyle } from '../styles'
+import { GoogleButton } from './google'
 
 interface Props {}
 
@@ -91,6 +92,8 @@ export default function Login({}: Props) {
             </LoadingButton>
 
             <Divider flexItem sx={{ my: 2 }} />
+
+            <GoogleButton/>
         </Box>
     )
 }
