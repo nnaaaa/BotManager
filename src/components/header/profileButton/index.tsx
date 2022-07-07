@@ -61,7 +61,7 @@ export function ProfileButton() {
                 open={toggle}
                 onClose={() => setToggle(false)}
             >
-                <MenuItem>
+                <MenuItem disabled={true}>
                     <Typography textAlign="center">Profile</Typography>
                 </MenuItem>
                 <MenuItem>

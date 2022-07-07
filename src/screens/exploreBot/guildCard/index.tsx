@@ -18,7 +18,7 @@ interface Props {
     bot: BotEntity
 }
 
-export function GuildCard({ bot }: Props) {
+export function BotCard({ bot }: Props) {
     const [isExpanded, setExpanded] = useState(false)
 
     return (
@@ -32,7 +32,7 @@ export function GuildCard({ bot }: Props) {
                         </Typography>
                     </Stack>
                     <Typography variant="body2" color="text.secondary" noWrap>
-                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        {bot.description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
