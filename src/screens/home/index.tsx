@@ -1,9 +1,9 @@
-import Cookies from "js-cookie"
-import { useEffect } from "react"
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
 
 export function Home() {
     useEffect(() => {
-        if (!window.location.search) return 
+        if (!window.location.search) return
 
         const params = new URLSearchParams(window.location.search)
         const accessToken = params.get('accessToken')
@@ -13,7 +13,7 @@ export function Home() {
         Cookies.set('refreshtoken', refreshToken)
 
         window.location.search = ''
-    },[window.location.search])
+    }, [window.location.search])
 
     return <></>
 }

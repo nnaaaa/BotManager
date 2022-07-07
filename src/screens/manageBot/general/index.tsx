@@ -1,8 +1,9 @@
-import { Box, Button, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
-import { Copy } from 'components'
+import { Copy, InputImage } from 'components'
 import { AvatarCard } from 'components/avatarCard'
 import { useFormik } from 'formik'
+import { ChangeEvent } from 'react'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
 import { borderStyle } from 'styles/global'
@@ -16,11 +17,19 @@ export function GeneralInfomation() {
     const dispatch = useAppDispatch()
     const { profile, isLoading } = useAppSelector((state) => state.bot)
 
-    const { errors, values, touched, handleSubmit, handleChange } = useFormik({
+    const onUploadAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target && e.target.files) {
+            console.log(URL.createObjectURL(e.target.files[0]))
+            setValues({ ...values, avatarUrl: URL.createObjectURL(e.target.files[0]) })
+        }
+    }
+
+    const { errors, values, touched, handleSubmit, handleChange, setValues } = useFormik({
         enableReinitialize: true,
         initialValues: {
             name: profile?.name || '',
             description: profile?.description || '',
+            avatarUrl: profile?.avatarUrl || '',
         },
         validationSchema: botInfoValidate,
         onSubmit: async (values, { setFieldError }) => {
@@ -32,7 +41,7 @@ export function GeneralInfomation() {
                     )
                 )
             } catch {
-                setFieldError('name','Bot name is already taken')
+                setFieldError('name', 'Bot name is already taken')
             }
         },
     })
@@ -48,30 +57,39 @@ export function GeneralInfomation() {
                 What should we call your creation? What amazing things does it do? What
                 icon should represent it across Disney? Tell us here!
             </Typography>
-            <Stack direction="row" spacing={4} sx={{ mt: 6, flex: 1 }}>
-                <Stack>
-                    <Title>Bot icon</Title>
-                    <AvatarCard url={profile.avatarUrl} />
-                </Stack>
-
-                <Stack spacing={4} sx={{ flex: 1 }}>
+            <Grid container spacing={4} sx={{ mt: 6, flex: 1 }}>
+                <Grid item xs={12} md={3} spacing={4}>
                     <Stack>
+                        <Title>Bot icon</Title>
+                        <InputImage name="avatarFile" onChange={onUploadAvatar}>
+                            <AvatarCard url={values.avatarUrl} />
+                        </InputImage>
+                    </Stack>
+                </Grid>
+
+                <Grid item container md={9} spacing={4}>
+                    <Grid item xs={12}>
                         <Title>Name</Title>
                         <TextField
                             name="name"
                             variant="outlined"
+                            fullWidth
                             value={values.name}
                             onChange={handleChange}
                             error={touched.name && Boolean(errors.name)}
                             helperText={touched.name && errors.name}
                         />
-                    </Stack>
+                    </Grid>
 
-                    <Stack>
+                    <Grid item xs={12}>
                         <Title>Description</Title>
+                        <Typography variant="caption" color="text.disabled" gutterBottom>
+                            ({values.description.length} characters)
+                        </Typography>
                         <TextField
                             name="description"
                             variant="outlined"
+                            fullWidth
                             value={values.description}
                             error={touched.description && Boolean(errors.description)}
                             helperText={touched.description && errors.description}
@@ -80,22 +98,22 @@ export function GeneralInfomation() {
                             maxRows={7}
                             minRows={4}
                         />
-                    </Stack>
+                    </Grid>
 
-                    <Stack>
+                    <Grid item xs={12}>
                         <Title>Bot ID</Title>
                         <Typography>{profile.botId}</Typography>
-                    </Stack>
+                    </Grid>
 
-                    <Stack alignItems="flex-start">
+                    <Grid item xs={12} alignItems="flex-start" width="100%">
                         <Title>Secret Key</Title>
                         <Stack sx={borderStyle} className={style.textString}>
                             <Copy isHidden text={profile.secretKey} />
                         </Stack>
                         <GenerateSecretKeyButton />
-                    </Stack>
-                </Stack>
-            </Stack>
+                    </Grid>
+                </Grid>
+            </Grid>
 
             <Stack
                 sx={{ mt: 4, flex: 1 }}

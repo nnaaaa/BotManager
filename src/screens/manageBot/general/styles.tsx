@@ -13,8 +13,8 @@ export const useStyle = makeStyles({
     textString: {
         padding: 8,
         borderRadius: 8,
-        width: 'min-content',
-        maxWidth: '400px',
+        // width: 'min-content',
+        maxWidth: '100%',
         marginBottom: 8,
     },
 })

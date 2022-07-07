@@ -3,10 +3,12 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import { BotEntity } from 'entities/bot.entity'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
 
 export function SelectBot() {
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const { profile, yourBots, isLoading } = useAppSelector((state) => state.bot)
 
@@ -18,6 +20,7 @@ export function SelectBot() {
         dispatch(
             botActions.setBot(yourBots.find((bot) => bot.botId === botId) as BotEntity)
         )
+        navigate('general')
     }
 
     return (

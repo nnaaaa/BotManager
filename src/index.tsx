@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { store } from 'states/store'
 import { ColorMode } from 'states/context/colorMode'
+import { SocketProvider } from 'states/context/socket'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
@@ -13,13 +14,15 @@ const queryClient = new QueryClient()
 
 root.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <QueryClientProvider client={queryClient}>
-                <ColorMode>
-                    <App />
-                </ColorMode>
-            </QueryClientProvider>
-        </Provider>
+        <SocketProvider>
+            <Provider store={store}>
+                <QueryClientProvider client={queryClient}>
+                    <ColorMode>
+                        <App />
+                    </ColorMode>
+                </QueryClientProvider>
+            </Provider>
+        </SocketProvider>
     </React.StrictMode>
 )
 

@@ -1,31 +1,53 @@
 import { LoadingButton } from '@mui/lab'
 import { Box, Stack, TextField, Typography } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
+import { InputImage } from 'components'
 import { AvatarCard } from 'components/avatarCard'
-import { FormEvent, useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from 'states/hooks'
-import { authActions, botActions } from 'states/slices'
-import { Title } from './styles'
-import { useManageBot } from '../useManageBot'
 import { useFormik } from 'formik'
+import { ChangeEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from 'states/hooks'
+import { botActions } from 'states/slices'
 import { botInfoValidate } from 'utils/validation'
-
-export function CreateBot() {
+import { Title } from './styles'
+export function CreateBotScreen() {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const { isLoading } = useAppSelector((state) => state.bot)
 
-    const { errors, values, touched, handleSubmit, handleChange } = useFormik({
+    const onUploadAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
+        // if (e.target && e.target.files) {
+        //     // const a = await BotAPI.uploadImage(e.target.files[0])
+        //     console.log(URL.createObjectURL(e.target.files[0]))
+        //     setValues({ ...values, avatarUrl: URL.createObjectURL(e.target.files[0]) })
+        // }
+        // if (e.target && e.target.files) {
+        //     form.append('file', e.target.files[0])
+        //     form.append('upload_preset', 'botAvatar')
+        //     const res = await AxiosClient.post(
+        //         'https://api.cloudinary.com/v1_1/nnaaaa/upload',form
+        //     )
+        //     console.log(e.target.files[0])
+        //     // const a = v2.uploader.upload_large(e.target.files[0])
+        //     // console.log(a)
+        //     setValues({ ...values, avatarUrl: 'vcrewert' })
+        // }
+    }
+
+    const { errors, values, touched, handleSubmit, handleChange, setValues } = useFormik({
         enableReinitialize: true,
         initialValues: {
             name: '',
             description: '',
+            // avatarUrl: '',
         },
         validationSchema: botInfoValidate,
         onSubmit: async (values, { setFieldError }) => {
             try {
                 unwrapResult(await dispatch(botActions.createBot(values)))
+                navigate('/bot/manage/general')
             } catch {
-                setFieldError('name','Bot name is already taken')
+                setFieldError('name', 'Bot name is already taken')
             }
         },
     })
@@ -41,7 +63,9 @@ export function CreateBot() {
             <Stack direction="row" spacing={4} sx={{ mt: 6, flex: 1 }}>
                 <Stack>
                     <Title>Bot icon</Title>
-                    <AvatarCard url={''} />
+                    <InputImage name="avatarFile" onChange={onUploadAvatar}>
+                        <AvatarCard url={''} />
+                    </InputImage>
                 </Stack>
 
                 <Stack spacing={4} sx={{ flex: 1 }}>
@@ -59,6 +83,9 @@ export function CreateBot() {
 
                     <Stack>
                         <Title>Description</Title>
+                        <Typography variant="caption" color="text.disabled" gutterBottom>
+                            ({values.description.length} characters)
+                        </Typography>
                         <TextField
                             name="description"
                             variant="outlined"
@@ -66,6 +93,9 @@ export function CreateBot() {
                             onChange={handleChange}
                             error={touched.description && Boolean(errors.description)}
                             helperText={touched.description && errors.description}
+                            multiline
+                            minRows={4}
+                            rows={7}
                         />
                     </Stack>
                 </Stack>

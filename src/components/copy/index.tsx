@@ -1,4 +1,10 @@
-import { Circle, Star, Visibility, VisibilityOff } from '@mui/icons-material'
+import {
+    Circle,
+    ContentCopyOutlined,
+    Star,
+    Visibility,
+    VisibilityOff,
+} from '@mui/icons-material'
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
 import { useEffect, useMemo, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -20,48 +26,45 @@ export function Copy({ text, isHidden = false }: Props) {
         <Stack
             direction="row"
             alignItems="center"
-            // sx={{
-            //     borderColor: 'text.disabled',
-            //     borderWidth: 1,
-            //     borderStyle: 'solid',
-            //     width: 'min-content',
-            //     p: 1,
-            //     borderRadius: 1,
-            // }}
+            justifyContent="space-between"
+            width="100%"
         >
             {isHidden ? (
                 isVisible ? (
-                    <Typography sx={{ mr: 1 }} noWrap>
+                    <Typography sx={{ mr: 1, maxWidth: '400px' }} noWrap>
                         {text}
                     </Typography>
                 ) : (
                     <Stack direction="row">
                         {text
                             .split('')
-                            .slice(0, 30)
+                            .slice(0, 40)
                             .map((char, i) => (
                                 <Circle key={'hidde' + char + i} sx={{ fontSize: 8 }} />
                             ))}
                     </Stack>
                 )
             ) : (
-                <Typography sx={{ mr: 1 }} noWrap>
+                <Typography sx={{ mr: 1, maxWidth: '400px' }} noWrap>
                     {text}
                 </Typography>
             )}
-            {isHidden && (
-                <IconButton onClick={() => setVisible((pre) => !pre)}>
-                    {isVisible ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-            )}
-            <CopyToClipboard text={text} onCopy={() => setCopy(true)}>
-                <Button
-                    variant={isCopied ? 'contained' : 'outlined'}
-                    sx={{ textTransform: 'capitalize' }}
-                >
-                    {isCopied ? `Copied!` : `Copy`}
-                </Button>
-            </CopyToClipboard>
+            <Stack direction="row" alignItems="center" spacing={1}>
+                {isHidden && (
+                    <IconButton onClick={() => setVisible((pre) => !pre)}>
+                        {isVisible ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                )}
+                <CopyToClipboard text={text} onCopy={() => setCopy(true)}>
+                    <Button
+                        variant={isCopied ? 'contained' : 'outlined'}
+                        sx={{ textTransform: 'capitalize' }}
+                        startIcon={<ContentCopyOutlined />}
+                    >
+                        {isCopied ? `Copied!` : `Copy`}
+                    </Button>
+                </CopyToClipboard>
+            </Stack>
         </Stack>
     )
 }

@@ -20,6 +20,7 @@ export function Header() {
                             <Button
                                 className={style.button}
                                 component={Link}
+                                size="large"
                                 to="/"
                                 variant="text"
                                 color="inherit"
@@ -33,6 +34,7 @@ export function Header() {
                             <Button
                                 className={style.button}
                                 component={Link}
+                                size="large"
                                 to="doc"
                                 variant="text"
                                 color="inherit"

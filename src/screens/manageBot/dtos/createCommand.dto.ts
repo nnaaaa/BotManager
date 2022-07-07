@@ -1,6 +1,5 @@
-import { Permission } from 'entities/role.entity'
-
 export interface CreateCommandDto {
+    botId: string
     name: string
     description: string
 }

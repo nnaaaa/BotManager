@@ -15,9 +15,9 @@ export interface MemberEntity {
 
     avatarUrl: string
 
-    user: UserEntity
+    user?: UserEntity
 
-    bot: BotEntity
+    bot?: BotEntity
 
     guild: GuildEntity
 

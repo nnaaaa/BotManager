@@ -39,7 +39,6 @@ export default function Login({}: Props) {
             className={style.form}
             onSubmit={handleSubmit}
             sx={{
-                '&:hover': { borderColor: 'primary.main' },
                 borderColor: 'text.disabled',
             }}
         >
@@ -93,7 +92,7 @@ export default function Login({}: Props) {
 
             <Divider flexItem sx={{ my: 2 }} />
 
-            <GoogleButton/>
+            <GoogleButton />
         </Box>
     )
 }

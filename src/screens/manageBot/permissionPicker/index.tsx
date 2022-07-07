@@ -21,7 +21,7 @@ type PermissionState = {
     [Property in keyof Permission]: boolean
 }
 
-export function PermissionScreen() {
+export function PermissionPicker() {
     const dispatch = useAppDispatch()
     const { profile, isLoading } = useAppSelector((state) => state.bot)
     const initPermissionState = useMemo<PermissionState>(() => {
@@ -125,7 +125,7 @@ export function PermissionScreen() {
                                 .join(' ')
                                 .toLowerCase()
                             return (
-                                <Grid item xs={4}>
+                                <Grid item xs={4} key={permission}>
                                     <FormControlLabel
                                         control={
                                             <Checkbox

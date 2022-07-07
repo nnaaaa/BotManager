@@ -1,3 +1,4 @@
+import { KeyboardArrowDown, ManageAccounts, Public } from '@mui/icons-material'
 import { Button, Popover, Stack } from '@mui/material'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -10,11 +11,12 @@ export function BotButton() {
         <>
             <Button
                 className={style.button}
-                variant="text"
                 color="inherit"
+                size="large"
                 sx={{ textTransform: 'capitalize' }}
                 ref={ref as any}
                 onClick={() => setToggle(!toggle)}
+                endIcon={<KeyboardArrowDown />}
             >
                 Bot
             </Button>
@@ -31,22 +33,26 @@ export function BotButton() {
                     <Button
                         className={style.button}
                         component={Link}
-                        to="bot/create"
+                        to="bot/manage/create"
                         variant="text"
                         color="inherit"
+                        size="large"
                         sx={{ textTransform: 'capitalize' }}
                         onClick={() => setToggle(false)}
+                        startIcon={<ManageAccounts />}
                     >
                         Manage
                     </Button>
                     <Button
                         className={style.button}
                         component={Link}
-                        to="bot/find"
+                        size="large"
+                        to="bot/explore"
                         variant="text"
                         color="inherit"
                         sx={{ textTransform: 'capitalize' }}
                         onClick={() => setToggle(false)}
+                        startIcon={<Public />}
                     >
                         Explore
                     </Button>

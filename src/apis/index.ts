@@ -1,5 +1,5 @@
 export * from './axios'
 export * from './user.api'
 export * from './bot.api'
-export * from './guild.api'
 export * from './auth.api'
+export * from './command.api'

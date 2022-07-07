@@ -3,43 +3,29 @@ import {
     Avatar,
     Box,
     CircularProgress,
+    IconButton,
     ListItem,
     ListItemAvatar,
     ListItemButton,
     ListItemText,
     Stack,
-    Typography,
 } from '@mui/material'
-import { GuildAPI } from 'apis'
-import { GuildEntity } from 'entities/guild.entity'
 import { useState } from 'react'
-import { useQuery } from 'react-query'
-import { LiistItemButtonCustom } from './styles'
+import { useAppSelector } from 'states/hooks'
 
 export function ListGuild() {
-    const [open, setOpen] = useState(false)
+    const [isOpen, setOpen] = useState(true)
 
-    const { data, isLoading } = useQuery('joinedGuild', GuildAPI.getJoined)
+    const { members, isLoading } = useAppSelector((state) => state.member)
 
     return (
-        // <List component={Wrapper}>
-        //     <ListItemText>Guilds</ListItemText>
-        //     <ListItemButton>
-        //         <ListItemAvatar>
-        //             <Avatar>G</Avatar>
-        //         </ListItemAvatar>
-        //         <ListItemText>Guildddd</ListItemText>
-        //     </ListItemButton>
-        // </List>
-        <Box sx={{ width: '100%', p: 2 }}>
+        <Box sx={{ width: '100%' }}>
             <ListItemButton
                 alignItems="flex-start"
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen((pre) => !pre)}
                 sx={{
                     px: 3,
                     pt: 2.5,
-                    // pb: open ? 0 : 2.5,
-                    // '&:hover, &:focus': { '& svg': { opacity: open ? 1 : 0 } },
                 }}
             >
                 <PeopleAltOutlined sx={{ mr: 1 }} />
@@ -56,7 +42,7 @@ export function ListGuild() {
                         noWrap: true,
                         fontSize: 14,
                         lineHeight: '16px',
-                        color: open ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
+                        color: isOpen ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
                     }}
                     sx={{ my: 0 }}
                 />
@@ -66,23 +52,15 @@ export function ListGuild() {
                     <KeyboardArrowDown
                         sx={{
                             mr: -1,
-                            transform: open ? 'rotate(-180deg)' : 'rotate(0)',
+                            transform: isOpen ? 'rotate(-180deg)' : 'rotate(0)',
                             transition: '0.2s',
                         }}
                     />
                 )}
             </ListItemButton>
-            {open &&
-                data &&
-                data.map(({ guild, memberId, nickname, avatarUrl }) => (
-                    <ListItemButton
-                        key={memberId}
-                        sx={{
-                            borderColor: 'text.disabled',
-                            borderWidth: 1,
-                            borderStyle: 'solid',
-                        }}
-                    >
+            {isOpen &&
+                members.map(({ guild, memberId, nickname, avatarUrl }) => (
+                    <ListItemButton key={memberId}>
                         <ListItemAvatar>
                             <Avatar src={guild.avatarUrl} />
                         </ListItemAvatar>
@@ -109,6 +87,9 @@ export function ListGuild() {
                                 />
                             </ListItem>
                         </Stack>
+                        <IconButton>
+                            <PeopleAltOutlined />
+                        </IconButton>
                     </ListItemButton>
                 ))}
         </Box>

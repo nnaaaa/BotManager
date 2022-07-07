@@ -1,3 +1,7 @@
 export * from './header'
 export * from './logo'
 export * from './copy'
+export * from './inputImage'
+export * from './loading'
+export * from './avatarCard'
+export * from './popup'
