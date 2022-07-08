@@ -1,6 +1,6 @@
 import { Avatar, Box } from '@mui/material'
 import { Link } from 'react-router-dom'
-import * as icon from 'assets/icon.png'
+import * as icon from 'assets/images/icon.png'
 
 interface Props {
     width?: number

@@ -77,7 +77,7 @@ export default function Login({}: Props) {
 
             {authError && (
                 <Typography color="error" gutterBottom>
-                    Account and password are incorrect
+                    {authError}
                 </Typography>
             )}
 

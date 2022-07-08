@@ -15,6 +15,8 @@ import {
     ManageBot,
     PermissionPicker,
 } from 'screens'
+import { Classes } from 'screens/document/classes'
+import { QuickStart } from 'screens/document/quickstart'
 import { ColorModeContext } from 'states/context/colorMode'
 import { Wrapper } from 'styles'
 import GlobalStyles from 'styles/global'
@@ -34,7 +36,10 @@ function App() {
                     <Header />
                     <Routes>
                         <Route element={<Authentication />} path="auth" />
-                        <Route element={<Document />} path="doc" />
+                        <Route element={<Document />} path="doc">
+                            <Route element={<Classes />} path="classes" />
+                            <Route element={<QuickStart />} path="quickstart" />
+                        </Route>
                         <Route path="bot">
                             <Route element={<ManageBot />} path="manage">
                                 <Route element={<GeneralInfomation />} path="general" />

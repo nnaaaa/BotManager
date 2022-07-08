@@ -1,6 +1,7 @@
 import { Theme } from '@emotion/react'
-import { createTheme, SxProps } from '@mui/material'
+import { SxProps } from '@mui/material'
 import { createGlobalStyle } from 'styled-components'
+import '../assets/fonts/FrederGreat/FrederGreat-Regular.ttf'
 
 const globalStyles = createGlobalStyle`
     html{
@@ -23,17 +24,7 @@ const globalStyles = createGlobalStyle`
     form{
         margin:0;
     }
-    ::-webkit-scrollbar{
-        width:8px;
-    }
-    ::-webkit-scrollbar-track{
-        width:12px;
-    }
-    ::-webkit-scrollbar-thumb{
-        width:7px;
-        border-radius: 10px;
-        background:gray;
-    }
+   
     /* ::-webkit-scrollbar-thumb:hover {
         background:#EA63FD;
     } */

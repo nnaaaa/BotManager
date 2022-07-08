@@ -1,14 +1,26 @@
-import { Grid, Skeleton } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import styled from 'styled-components'
+import * as bg from 'assets/images/background.jpg'
 
 export const useStyle = makeStyles({
     wrapper: {
-        backgroundImage: `linear-gradient(to right bottom,
-            rgba(24, 1, 86,0.4),
-            rgba(84, 0, 218,0.4),
-            rgba(122, 39, 244,0.4),
-            rgba(236, 58, 245,0.4),
-            rgba(93, 214, 245,0.4))`,
-        minHeight: '100vh',
+        background: `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(${bg.default}) no-repeat 0 50%`,
+        // position: 'relative',
+        // '&::before': {
+        //     content: "wret",
+        //     position: 'absolute',
+        //     top: 0,
+        //     right: 0,
+        //     bottom: 0,
+        //     left: 0,
+        //     backgroundColor: 'rgba(0,0,0,0.25)',
+        // }
     },
 })
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+`

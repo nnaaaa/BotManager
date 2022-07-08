@@ -12,7 +12,7 @@ export const useLoadMembers = () => {
 
     useEffect(() => {
         const fetchMember = async () => {
-            if (!memberSocket) return
+            if (!memberSocket || !profile) return
             dispatch(memberActions.startLoading())
             return await new Promise<MemberEntity[]>((resolve) => {
                 memberSocket.emit('getJoined', (data: MemberEntity[]) => resolve(data))
@@ -21,6 +21,9 @@ export const useLoadMembers = () => {
         fetchMember()
             .then((members) => {
                 dispatch(memberActions.set(members || []))
+            })
+            .catch(() => {
+                dispatch(memberActions.endLoading())
             })
             .finally(() => {
                 dispatch(memberActions.endLoading())

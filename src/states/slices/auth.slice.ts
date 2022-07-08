@@ -17,21 +17,13 @@ const initialState: IinitState = {
     profile: null,
 }
 const loginAsync = createAsyncThunk('auth/login', async (loginDto: LoginDto) => {
-    try {
-        await AuthAPI.login(loginDto)
-    } catch (e) {
-        console.error(e)
-    }
+    await AuthAPI.login(loginDto)
 })
 
 const getProfile = createAsyncThunk('auth/getProfile', async () => {
-    try {
-        const res = await UserAPI.getProfile()
+    const res = await UserAPI.getProfile()
 
-        return res.data
-    } catch (e) {
-        console.error(e)
-    }
+    return res.data
 })
 
 // const registerAsync = createAsyncThunk(
@@ -84,7 +76,7 @@ const authSlice = createSlice({
             })
             .addCase(loginAsync.rejected, (state) => {
                 state.isLoading = false
-                state.errors = 'Fail to login'
+                state.errors = 'Account or password is incorrect'
             })
             .addCase(loginAsync.fulfilled, (state) => {
                 state.isLoading = false
@@ -95,7 +87,7 @@ const authSlice = createSlice({
             })
             .addCase(getProfile.rejected, (state) => {
                 state.isLoading = false
-                state.errors = 'Fail to get user profile'
+                state.errors = 'Token is expired'
             })
             .addCase(getProfile.fulfilled, (state, action) => {
                 state.isLoading = false

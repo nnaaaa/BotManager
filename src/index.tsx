@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { store } from 'states/store'
 import { ColorMode } from 'states/context/colorMode'
 import { SocketProvider } from 'states/context/socket'
+import './styles/fonts.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

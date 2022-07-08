@@ -24,7 +24,7 @@ export function ListCommand() {
     const [activeCommand, setActiveCommand] = useState<CommandEntity>()
 
     useEffect(() => {
-        if (!profile) return
+        if (!profile || !profile.commands) return
         if (profile.commands.length > 0 && !activeCommand) {
             setActiveCommand(profile.commands[0])
         }

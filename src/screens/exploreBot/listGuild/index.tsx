@@ -87,7 +87,7 @@ export function ListGuild() {
                                 />
                             </ListItem>
                         </Stack>
-                        <IconButton>
+                        <IconButton disabled={true}>
                             <PeopleAltOutlined />
                         </IconButton>
                     </ListItemButton>

@@ -24,7 +24,7 @@ export const useRoleSocket = () => {
             )
         })
 
-        if ((data as SocketErrorDto).status) {
+        if ((data as SocketErrorDto)?.status) {
             console.error(data)
             return null
         }
@@ -51,7 +51,7 @@ export const useRoleSocket = () => {
             )
         })
 
-        if ((data as SocketErrorDto).status) {
+        if ((data as SocketErrorDto)?.status) {
             console.error(data)
             return null
         }
