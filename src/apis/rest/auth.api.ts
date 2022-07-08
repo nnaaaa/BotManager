@@ -1,5 +1,5 @@
-import { AxiosClient } from 'apis'
-import { LoginDto } from '../screens/authenticate/login/dtos/local.dto'
+import { AxiosClient } from 'apis/rest'
+import { LoginDto } from '../../screens/authenticate/login/dtos/local.dto'
 
 export class AuthAPI {
     static namespace = 'auth'

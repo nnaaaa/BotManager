@@ -5,10 +5,12 @@ import { connect, Manager, Socket } from 'socket.io-client'
 
 interface ISocketContext {
     memberSocket: Socket | null
+    roleSocket: Socket | null
 }
 
 export const SocketContext = createContext<ISocketContext>({
     memberSocket: null,
+    roleSocket: null,
 })
 
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
@@ -27,9 +29,10 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
     )
 
     const memberSocket = useMemo(() => socket.socket('/member'), [socket])
+    const roleSocket = useMemo(() => socket.socket('/role'), [socket])
 
     return (
-        <SocketContext.Provider value={{ memberSocket }}>
+        <SocketContext.Provider value={{ memberSocket, roleSocket }}>
             {children}
         </SocketContext.Provider>
     )

@@ -2,6 +2,11 @@ import { LoadingButton } from '@mui/lab'
 import {
     Avatar,
     Box,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    FormGroup,
     ListItem,
     ListItemAvatar,
     Stack,
@@ -47,15 +52,8 @@ export function InputForm({ closePopup }: Props) {
     })
 
     return (
-        <Box
-            sx={{
-                bgcolor: 'background.paper',
-                p: 2,
-                borderRadius: 2,
-                width: 400,
-            }}
-        >
-            <Title>Command Worker</Title>
+        <>
+            <DialogTitle>Command Worker</DialogTitle>
             {profile ? (
                 <>
                     <ListItem>
@@ -70,36 +68,37 @@ export function InputForm({ closePopup }: Props) {
                             {values.name}
                         </Typography>
                     </ListItem>
-                    <Stack sx={{ mt: 2 }}>
-                        <TextField
-                            name="name"
-                            variant="outlined"
-                            fullWidth
-                            label="Command name"
-                            value={values.name}
-                            onChange={handleChange}
-                            error={touched.name && Boolean(errors.name)}
-                            helperText={touched.name && errors.name}
-                        />
-                    </Stack>
+                    <DialogContent>
+                        <Stack spacing={2}>
+                            <TextField
+                                autoFocus
+                                name="name"
+                                variant="outlined"
+                                fullWidth
+                                label="Command name"
+                                value={values.name}
+                                onChange={handleChange}
+                                error={touched.name && Boolean(errors.name)}
+                                helperText={touched.name && errors.name}
+                            />
 
-                    <Stack sx={{ mt: 2 }}>
-                        <TextField
-                            name="description"
-                            label="Describe your command"
-                            variant="outlined"
-                            fullWidth
-                            value={values.description}
-                            error={touched.description && Boolean(errors.description)}
-                            helperText={touched.description && errors.description}
-                            onChange={handleChange}
-                            multiline
-                            maxRows={7}
-                            minRows={4}
-                        />
-                    </Stack>
+                            <TextField
+                                name="description"
+                                label="Describe your command"
+                                variant="outlined"
+                                fullWidth
+                                value={values.description}
+                                error={touched.description && Boolean(errors.description)}
+                                helperText={touched.description && errors.description}
+                                onChange={handleChange}
+                                multiline
+                                maxRows={7}
+                                minRows={4}
+                            />
+                        </Stack>
+                    </DialogContent>
 
-                    <Stack sx={{ mt: 2 }} alignItems="flex-end">
+                    <DialogActions>
                         <LoadingButton
                             variant="contained"
                             onClick={() => handleSubmit()}
@@ -107,11 +106,13 @@ export function InputForm({ closePopup }: Props) {
                         >
                             Save
                         </LoadingButton>
-                    </Stack>
+                    </DialogActions>
                 </>
             ) : (
-                <Typography>No Bot found</Typography>
+                <DialogContent>
+                    <DialogContentText>No Bot found</DialogContentText>
+                </DialogContent>
             )}
-        </Box>
+        </>
     )
 }

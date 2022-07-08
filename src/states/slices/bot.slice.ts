@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { BotAPI, CommandAPI } from 'apis'
+import { BotAPI, CommandAPI } from 'apis/rest'
 import { BotEntity } from 'entities/bot.entity'
 import {
     CreateCommandDto,
@@ -7,8 +7,8 @@ import {
     DeleteBotDto,
     GenSecretKeyDto,
     UpdateBotDto,
-} from 'screens/manageBot/dtos'
-import { UpdateCommandDto } from 'screens/manageBot/dtos/updateCommand.dto'
+} from 'utils/dtos'
+import { UpdateCommandDto } from 'utils/dtos/updateCommand.dto'
 
 interface IinitState {
     isLoading: boolean

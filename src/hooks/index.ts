@@ -1,2 +1,2 @@
 export * from './useLogin'
-export * from './useMember.socket'
+export * from '../apis/socket/useMember.socket'

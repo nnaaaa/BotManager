@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { CreateBotDto, UpdateBotDto } from './dtos'
+import { CreateBotDto, UpdateBotDto } from '../../utils/dtos'
 
 export const useManageBot = (defaultInfo: Omit<UpdateBotDto, 'botId'>) => {
     const [name, setName] = useState<string>(defaultInfo.name || '')

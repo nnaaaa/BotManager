@@ -35,7 +35,7 @@ export function ListCommand() {
         setActiveCommand(profile.commands[0] || null)
     }, [profile?.commands])
 
-    if (!profile) return <></>
+    if (!profile || !profile.commands) return <></>
 
     if (profile.commands.length === 0 || !activeCommand)
         return (

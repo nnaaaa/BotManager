@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthAPI, UserAPI } from 'apis'
+import { AuthAPI, UserAPI } from 'apis/rest'
 import { BotEntity } from 'entities/bot.entity'
 import { UserEntity } from 'entities/user.entity'
 import { LoginDto } from 'screens/authenticate/login/dtos/local.dto'
-import { UpdateBotDto } from 'screens/manageBot/dtos'
+import { UpdateBotDto } from 'utils/dtos'
 
 interface IinitState {
     isLoading: boolean

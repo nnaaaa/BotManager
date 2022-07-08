@@ -1,4 +1,4 @@
-import { AxiosClient } from 'apis'
+import { AxiosClient } from 'apis/rest'
 
 export class UserAPI {
     static namepsace = 'user'

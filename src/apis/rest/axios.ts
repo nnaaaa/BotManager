@@ -2,7 +2,7 @@ import { Env } from 'configs'
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import queryString from 'query-string'
 import Cookie from 'js-cookie'
-import { AuthAPI } from 'apis/auth.api'
+import { AuthAPI } from 'apis/rest/auth.api'
 
 export const normalCondition = {
     headers: {

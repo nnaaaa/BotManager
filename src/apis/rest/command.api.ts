@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { CommandEntity } from 'entities/command.entity'
-import { CreateCommandDto } from 'screens/manageBot/dtos'
-import { UpdateCommandDto } from 'screens/manageBot/dtos/updateCommand.dto'
+import { CreateCommandDto } from 'utils/dtos'
+import { UpdateCommandDto } from 'utils/dtos/updateCommand.dto'
 import { AxiosClient } from './axios'
 
 export class CommandAPI {

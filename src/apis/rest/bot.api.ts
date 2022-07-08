@@ -1,11 +1,6 @@
 import { AxiosResponse } from 'axios'
 import { BotEntity } from 'entities/bot.entity'
-import {
-    CreateBotDto,
-    DeleteBotDto,
-    GenSecretKeyDto,
-    UpdateBotDto,
-} from 'screens/manageBot/dtos'
+import { CreateBotDto, DeleteBotDto, GenSecretKeyDto, UpdateBotDto } from 'utils/dtos'
 import { AxiosClient } from './axios'
 
 export class BotAPI {

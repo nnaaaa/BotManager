@@ -4,23 +4,21 @@ import { Link } from 'react-router-dom'
 import { BotButton } from './botButton'
 import { ModeSwitch } from './modeSwitch'
 import { ProfileButton } from './profileButton'
-import { useStyle } from './styles'
+// import { useStyle } from './styles'
 
 export function Header() {
-    const style = useStyle()
+    // const style = useStyle()
 
     return (
-        <Box className={style.appBar}>
-            <AppBar color="primary" position="fixed" className={style.toolBar}>
+        <Box>
+            <AppBar color="primary" position="fixed">
                 <Toolbar>
                     <Stack direction="row" justifyContent="space-between" flex={1}>
                         <Stack direction="row" flex={1} alignItems="center" spacing={2}>
                             <Logo />
 
                             <Button
-                                className={style.button}
                                 component={Link}
-                                size="large"
                                 to="/"
                                 variant="text"
                                 color="inherit"
@@ -32,9 +30,7 @@ export function Header() {
                             <BotButton />
 
                             <Button
-                                className={style.button}
                                 component={Link}
-                                size="large"
                                 to="doc"
                                 variant="text"
                                 color="inherit"
