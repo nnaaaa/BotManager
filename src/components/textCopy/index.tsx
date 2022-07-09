@@ -1,12 +1,11 @@
 import {
     Circle,
     ContentCopyOutlined,
-    Star,
     Visibility,
     VisibilityOff,
 } from '@mui/icons-material'
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
-import { useEffect, useMemo, useState } from 'react'
+import { Button, IconButton, Stack, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 interface Props {

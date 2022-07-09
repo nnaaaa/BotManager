@@ -85,16 +85,50 @@ export function ListCommand() {
                                     noWrap
                                     color="primary"
                                     sx={{ maxWidth: '30%' }}
+                                    fontFamily="Cascadia"
                                 >
                                     {profile.name}
                                 </Typography>
-                                <Typography fontWeight="bold">&nbsp;.&nbsp;</Typography>
+                                <Typography fontWeight="bold" fontFamily="Cascadia">
+                                    .
+                                </Typography>
                                 <Typography
                                     noWrap
                                     color="text.disabled"
-                                    sx={{ maxWidth: '70%' }}
+                                    sx={{ maxWidth: '30%' }}
+                                    fontFamily="Cascadia"
                                 >
                                     {command.name}
+                                </Typography>
+                                <Typography fontWeight="bold" fontFamily="Cascadia">
+                                    (
+                                </Typography>
+                                <Stack
+                                    sx={{ maxWidth: '40%', overflow: 'hidden' }}
+                                    direction="row"
+                                >
+                                    {command.args.map((arg, index) => (
+                                        <>
+                                            <Typography
+                                                key={arg + index}
+                                                color="text.disabled"
+                                                fontFamily="Cascadia"
+                                            >
+                                                {arg}
+                                            </Typography>
+                                            {index !== command.args.length - 1 && (
+                                                <Typography
+                                                    fontWeight="bold"
+                                                    fontFamily="Cascadia"
+                                                >
+                                                    ,
+                                                </Typography>
+                                            )}
+                                        </>
+                                    ))}
+                                </Stack>
+                                <Typography fontWeight="bold" fontFamily="Cascadia">
+                                    )
                                 </Typography>
                             </ListItemButton>
                         ))}

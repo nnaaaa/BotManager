@@ -1,6 +1,7 @@
 import {
     Avatar,
     Box,
+    Divider,
     Grid,
     List,
     ListItemAvatar,
@@ -41,6 +42,7 @@ export function MessageScreen() {
                                 key={m.messageId}
                                 sx={{ alignItems: 'flex-start' }}
                                 onClick={() => setActiveMessage(m)}
+                                selected={m.messageId === activeMessage?.messageId}
                             >
                                 <ListItemAvatar>
                                     <Avatar src={m.author.avatarUrl} />
@@ -54,6 +56,7 @@ export function MessageScreen() {
                                         secondary={`${dayjs(m.createdAt).fromNow()}`}
                                     />
                                     <Markdown text={m.content} />
+                                    <Divider flexItem />
                                 </Stack>
                             </ListItemButton>
                         ))}

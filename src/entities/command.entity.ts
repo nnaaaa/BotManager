@@ -8,4 +8,6 @@ export interface CommandEntity {
     description: string
 
     bot: BotEntity
+
+    args: string[]
 }

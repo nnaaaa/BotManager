@@ -19,4 +19,9 @@ export const commandValidate = yup.object().shape({
         .string()
         .required('Description must be at least 10 characters')
         .min(10, 'Description must be at least 10 characters'),
+    args: yup.array().of(yup.string().required('Argument name is required')),
+})
+
+export const argumentValidate = yup.object().shape({
+    name: yup.string().required('Name is required'),
 })
