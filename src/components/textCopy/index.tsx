@@ -14,7 +14,7 @@ interface Props {
     isHidden?: boolean
 }
 
-export function Copy({ text, isHidden = false }: Props) {
+export function TextCopy({ text, isHidden = false }: Props) {
     const [isCopied, setCopy] = useState(false)
     const [isVisible, setVisible] = useState(false)
 

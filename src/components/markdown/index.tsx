@@ -5,7 +5,7 @@ interface Props {
     text: string
 }
 
-export function CodeBlock({ text }: Props) {
+export function Markdown({ text }: Props) {
     return (
         <ReactMarkdown
             children={text}

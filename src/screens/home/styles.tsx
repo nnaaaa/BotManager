@@ -1,10 +1,11 @@
 import { makeStyles } from '@mui/styles'
-import styled from 'styled-components'
+import { styled } from '@mui/material/styles'
 import * as bg from 'assets/images/background.jpg'
+import { Box } from '@mui/material'
 
 export const useStyle = makeStyles({
     wrapper: {
-        background: `linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(${bg.default}) no-repeat 0 50%`,
+        background: `linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(${bg.default}) no-repeat 0 50%`,
         // position: 'relative',
         // '&::before': {
         //     content: "wret",
@@ -17,7 +18,7 @@ export const useStyle = makeStyles({
         // }
     },
 })
-export const Wrapper = styled.div`
+export const Wrapper = styled(Box)`
     display: flex;
     flex-direction: column;
     justify-content: center;

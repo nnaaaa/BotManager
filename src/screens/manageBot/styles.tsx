@@ -1,16 +1,17 @@
 import { Typography } from '@mui/material'
-import styled from 'styled-components'
+import { styled } from '@mui/material/styles'
+import { Box } from '@mui/material'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Box)`
     /* padding: 1rem 1rem; */
     flex: 1;
 `
 
-export const Right = styled.div`
+export const Right = styled(Box)`
     padding: 2rem 2rem;
 `
 
-export const Left = styled.div`
+export const Left = styled(Box)`
     padding: 2rem 2rem;
 `
 

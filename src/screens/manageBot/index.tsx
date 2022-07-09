@@ -1,4 +1,4 @@
-import { Add, SmartToy, Shield, BorderColor, Adb } from '@mui/icons-material'
+import { Add, SmartToy, Shield, BorderColor, Adb, Message } from '@mui/icons-material'
 import {
     Button,
     Grid,
@@ -26,12 +26,16 @@ export function ManageBot() {
     useEffect(() => {
         if (yourBots.length > 0 && !botProfile) {
             dispatch(botActions.setBot(yourBots[0]))
-            if (pathname === '/bot/manage/create') navigate('/bot/manage/general')
+            if (pathname === '/bot/manage/create') {
+                navigate('/bot/manage/general')
+                return
+            }
+        } else if (botProfile) {
+            // navigate('/bot/manage/general')
         } else {
-            // setCurrentScreen('create')
-            // navigate('/bot/manage/create')
+            navigate('/bot/manage/create')
         }
-    }, [yourBots])
+    }, [yourBots, botProfile])
 
     useEffect(() => {
         const fetchYourBots = async () => {
@@ -116,6 +120,20 @@ export function ManageBot() {
                                 <ListItemText>Permission</ListItemText>
                             </ListItemButton>
                         </Stack>
+
+                        <Stack sx={{ mt: 4, width: '100%' }}>
+                            <Title>Testing</Title>
+                            <ListItemButton
+                                component={Link}
+                                to="message"
+                                selected={pathname == '/bot/manage/message'}
+                            >
+                                <ListItemIcon>
+                                    <Message fontSize="medium" />
+                                </ListItemIcon>
+                                <ListItemText>Sent Message</ListItemText>
+                            </ListItemButton>
+                        </Stack>
                     </>
                 )}
             </Grid>
@@ -138,3 +156,4 @@ export * from './commandScreen'
 export * from './createBotScreen'
 export * from './general'
 export * from './permissionPicker'
+export * from './messageScreen'

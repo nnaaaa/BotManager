@@ -41,3 +41,6 @@ export function Document() {
         </Wrapper>
     )
 }
+
+export * from './classes'
+export * from './quickstart'

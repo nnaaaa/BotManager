@@ -1,12 +1,12 @@
 import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
-import { Copy, InputImage } from 'components'
+import { TextCopy, InputImage } from 'components'
 import { AvatarCard } from 'components/avatarCard'
 import { useFormik } from 'formik'
 import { ChangeEvent } from 'react'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
-import { borderStyle } from 'styles/global'
+import { borderStyle } from 'styles/general'
 import { botInfoValidate } from 'utils/validation'
 import { DeleteButton } from './deleteButton'
 import { GenerateSecretKeyButton } from './generateKeybutton/secret'
@@ -58,7 +58,7 @@ export function GeneralInfomation() {
                 icon should represent it across Disney? Tell us here!
             </Typography>
             <Grid container spacing={4} sx={{ mt: 6, flex: 1 }}>
-                <Grid item xs={12} md={3} spacing={4}>
+                <Grid item xs={12} md={3}>
                     <Stack>
                         <Title>Bot icon</Title>
                         <InputImage name="avatarFile" onChange={onUploadAvatar}>
@@ -108,7 +108,7 @@ export function GeneralInfomation() {
                     <Grid item xs={12} alignItems="flex-start" width="100%">
                         <Title>Secret Key</Title>
                         <Stack sx={borderStyle} className={style.textString}>
-                            <Copy isHidden text={profile.secretKey} />
+                            <TextCopy isHidden text={profile.secretKey} />
                         </Stack>
                         <GenerateSecretKeyButton />
                     </Grid>

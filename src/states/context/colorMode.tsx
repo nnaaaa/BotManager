@@ -1,8 +1,16 @@
-import { createTheme } from '@mui/material'
+import { createTheme, Theme } from '@mui/material'
 import { createContext, useMemo, useState } from 'react'
-export const ColorModeContext = createContext({
+
+interface IColorModeContext {
+    toggleColorMode: () => void
+    theme: Theme
+    mode: 'dark' | 'light'
+}
+
+export const ColorModeContext = createContext<IColorModeContext>({
     toggleColorMode: () => {},
     theme: createTheme(),
+    mode: 'dark',
 })
 
 interface Props {
@@ -26,7 +34,7 @@ export const ColorMode: React.FC<Props> = ({ children }) => {
     )
 
     return (
-        <ColorModeContext.Provider value={{ toggleColorMode, theme }}>
+        <ColorModeContext.Provider value={{ toggleColorMode, theme, mode }}>
             {children}
         </ColorModeContext.Provider>
     )

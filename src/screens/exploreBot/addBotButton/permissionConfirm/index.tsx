@@ -13,11 +13,10 @@ import {
     Stack,
 } from '@mui/material'
 import Typography from '@mui/material/Typography'
-import { useRoleSocket } from 'apis/socket'
+import { useMemberSocket, useRoleSocket } from 'apis/socket'
 import { BotEntity } from 'entities/bot.entity'
 import { MemberEntity } from 'entities/member.entity'
 import { Permission, RoleEntity } from 'entities/role.entity'
-import { useMemberSocket } from 'hooks'
 import { useState } from 'react'
 interface Props {
     bot: BotEntity

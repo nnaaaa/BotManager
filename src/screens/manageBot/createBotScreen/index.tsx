@@ -95,7 +95,7 @@ export function CreateBotScreen() {
                             helperText={touched.description && errors.description}
                             multiline
                             minRows={4}
-                            rows={7}
+                            maxRows={7}
                         />
                     </Stack>
                 </Stack>

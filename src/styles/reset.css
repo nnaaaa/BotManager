@@ -1,0 +1,35 @@
+html {
+    font-family: 'Fira Code';
+}
+* {
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+img {
+    width: 100%;
+    display: inline-block;
+}
+input {
+    outline: none;
+    border: none;
+}
+form {
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    width: 12px;
+}
+::-webkit-scrollbar-thumb {
+    width: 12px;
+    border-radius: 2px;
+    background: rgba(128, 128, 128, 0.37);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 1);
+}

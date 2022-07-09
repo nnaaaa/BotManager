@@ -8,7 +8,7 @@ import {
     Stack,
     Typography,
 } from '@mui/material'
-import { CodeBlock } from 'components/codeBlock'
+import { Markdown } from 'components/markdown'
 import React, { Suspense, useEffect, useState } from 'react'
 import { useLoadMdText } from './useLoadMd'
 import { useScrollToElement } from 'react-use-scroll-to-element-hook'
@@ -44,7 +44,7 @@ export function QuickStart() {
                             key={index}
                             ref={getScrollToElementRef(section.title) as any}
                         >
-                            <CodeBlock text={section.text} />
+                            <Markdown text={section.text} />
                         </Box>
                     )
                 })}

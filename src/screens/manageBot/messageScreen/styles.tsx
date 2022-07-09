@@ -1,19 +1,21 @@
-import { Box } from '@mui/material'
+import { List } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-export const Wrapper = styled(Box)(({ theme }) => ({
-    minHeight: 'calc(100vh - 64px)',
-    marginTop: '64px',
-    display: 'flex',
+// import styled from "styled-components";
+
+export const ScrollStyled = styled(List)(({ theme }) => ({
+    maxHeight: '500px',
+    overflowY: 'auto',
+    overflowX: 'hidden',
     '&::-webkit-scrollbar': {
-        width: '10px',
+        width: '7px',
     },
     '&::-webkit-scrollbar-track': {
-        width: '10px',
+        width: '7px',
     },
     '&::-webkit-scrollbar-thumb': {
-        width: '10px',
-        borderRadius: '2px',
+        width: '7px',
+        borderRadius: '1px',
         background: 'gray',
         transition: '0.5s',
     },

@@ -14,44 +14,15 @@ import { Permission } from 'entities/role.entity'
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
-import { permissions as defaultPermissions } from 'utils/permissions'
 import { Title } from './styles'
-
-type PermissionState = {
-    [Property in keyof Permission]: boolean
-}
+import { usePicker } from './usePicker'
 
 export function PermissionPicker() {
     const dispatch = useAppDispatch()
     const { profile, isLoading } = useAppSelector((state) => state.bot)
-    const initPermissionState = useMemo<PermissionState>(() => {
-        if (!profile || !profile.requiredPermissions) return {}
-        const arrayPermissions = defaultPermissions.map((p) => ({
-            [p]: profile.requiredPermissions.includes(p),
-        }))
 
-        return Object.assign({}, ...arrayPermissions)
-    }, [profile, profile?.requiredPermissions])
-
-    const [permissions, setPermissions] = useState<PermissionState>(initPermissionState)
-
-    const isAllChecked = Object.values(permissions).every((isChecked) => isChecked)
-
-    const onOneCheck = (permission: Permission) => {
-        setPermissions((pre: any) => ({ ...pre, [permission]: !pre[permission] }))
-    }
-    const onManyCheck = (list: Permission[]) => {
-        if (isAllChecked)
-            setPermissions((pre: any) => ({
-                ...pre,
-                ...Object.assign({}, ...list.map((p) => ({ [p]: false }))),
-            }))
-        else
-            setPermissions((pre: any) => ({
-                ...pre,
-                ...Object.assign({}, ...list.map((p) => ({ [p]: true }))),
-            }))
-    }
+    const { defaultPermissions, permissions, onManyCheck, onOneCheck, isAllChecked } =
+        usePicker(profile)
 
     const onSubmit = async (e: FormEvent) => {
         try {
@@ -73,11 +44,6 @@ export function PermissionPicker() {
             console.error(e)
         }
     }
-
-    useEffect(() => {
-        if (!profile || !profile.requiredPermissions) return
-        setPermissions(initPermissionState)
-    }, [profile])
 
     if (!profile) return <></>
 

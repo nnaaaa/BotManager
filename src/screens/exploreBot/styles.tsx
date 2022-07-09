@@ -1,17 +1,17 @@
-import { IconButton, IconButtonProps, Typography } from '@mui/material'
+import { IconButton, IconButtonProps, Typography, Box } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import styled from 'styled-components'
+import { styled } from '@mui/material/styles'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Box)`
     /* padding: 1rem 1rem; */
     flex: 1;
 `
 
-export const Right = styled.div`
+export const Right = styled(Box)`
     padding: 2rem 2rem;
 `
 
-export const Left = styled.div`
+export const Left = styled(Box)`
     padding: 1rem 1rem;
 `
 

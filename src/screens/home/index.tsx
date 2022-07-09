@@ -21,17 +21,25 @@ export function Home() {
 
     return (
         <Wrapper className={style.wrapper}>
-            <Typography variant="h1" sx={{ fontFamily: 'FrederGreat' }}>
+            <Typography variant="h1" sx={{ fontFamily: 'FrederGreat' }} color="white">
                 Disney
             </Typography>
-            <Stack sx={{ mt: 4 }}>
+            <Stack sx={{ mt: 4 }} direction="row" spacing={2}>
                 <Button
                     size="large"
-                    variant="outlined"
+                    variant="contained"
                     component={Link}
                     to="doc/quickstart"
                 >
                     Quick Start
+                </Button>
+                <Button
+                    size="large"
+                    variant="outlined"
+                    component={Link}
+                    to="bot/manage/create"
+                >
+                    Create Bot
                 </Button>
             </Stack>
         </Wrapper>

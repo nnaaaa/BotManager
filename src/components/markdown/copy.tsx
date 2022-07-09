@@ -5,7 +5,14 @@ import { ReactNode, useEffect, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { dark, dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import {
+    dark,
+    dracula,
+    synthwave84,
+    materialDark,
+    materialLight,
+    vscDarkPlus,
+} from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface Props {
     children: ReactNode | ReactNode[]
@@ -37,7 +44,7 @@ export function CodeCopy({ children, language, props }: Props) {
             </CopyToClipboard>
             <SyntaxHighlighter
                 children={String(children).replace(/\n$/, '')}
-                // customStyle={dark}
+                wrapLongLines
                 style={dracula as any}
                 language={language}
                 PreTag="div"

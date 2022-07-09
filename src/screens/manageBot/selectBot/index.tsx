@@ -27,7 +27,7 @@ export function SelectBot() {
         <Select
             sx={{ width: '100%' }}
             displayEmpty
-            value={profile || ''}
+            value={profile?.botId || ''}
             open={isOpen && !isLoading && yourBots.length > 0}
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}

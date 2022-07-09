@@ -1,5 +1,5 @@
-import { TextField } from '@mui/material'
-import styled from 'styled-components'
+import { Box } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
 import { makeStyles } from '@mui/styles'
 
@@ -23,7 +23,7 @@ export const useStyle = makeStyles({
     },
 })
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Box)`
     flex: 1;
     display: flex;
     flex-direction: column;

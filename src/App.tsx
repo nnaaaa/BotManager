@@ -1,25 +1,26 @@
-import { CssBaseline, ThemeProvider, useTheme } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { Header } from 'components'
-import { useLogin } from 'hooks'
-import { useLoadMembers } from 'hooks/useLoadMembers'
+import { useLogin, useLoadMembers } from 'hooks'
 import { useContext } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import {
-    CommandScreen,
     Authentication,
+    Classes,
+    CommandScreen,
     CreateBotScreen,
     Document,
     ExploreBot,
     GeneralInfomation,
     Home,
     ManageBot,
+    MessageScreen,
     PermissionPicker,
+    QuickStart,
 } from 'screens'
-import { Classes } from 'screens/document/classes'
-import { QuickStart } from 'screens/document/quickstart'
 import { ColorModeContext } from 'states/context/colorMode'
-import { Wrapper } from 'styles'
-import GlobalStyles from 'styles/global'
+import { Wrapper } from './styles'
+import './styles/fonts.css'
+import './styles/reset.css'
 
 function App() {
     const { theme } = useContext(ColorModeContext)
@@ -30,7 +31,6 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <GlobalStyles />
             <HashRouter>
                 <Wrapper>
                     <Header />
@@ -46,8 +46,9 @@ function App() {
                                 <Route element={<PermissionPicker />} path="permission" />
                                 <Route element={<CreateBotScreen />} path="create" />
                                 <Route element={<CommandScreen />} path="addCommand" />
+                                <Route element={<MessageScreen />} path="message" />
                             </Route>
-                            <Route element={<ExploreBot />} path="explore"></Route>
+                            <Route element={<ExploreBot />} path="explore" />
                         </Route>
                         <Route element={<Home />} path="/" />
                     </Routes>
