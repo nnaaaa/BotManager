@@ -16,6 +16,7 @@ import {
 import { CommandEntity } from 'entities/command.entity'
 import { useEffect, useState } from 'react'
 import { useAppSelector } from 'states/hooks'
+import { Title } from 'styles'
 import { EditCommandForm } from '../editForm'
 
 export function ListCommand() {
@@ -58,14 +59,8 @@ export function ListCommand() {
                             pt: 1,
                         }}
                     >
-                        <ListItemText
-                            primary="Listed Commands"
-                            primaryTypographyProps={{
-                                fontSize: 22,
-                                fontWeight: 'medium',
-                                lineHeight: '20px',
-                            }}
-                        />
+                        <Title>{`Listed Commands (${profile.commands.length})`}</Title>
+
                         {isLoading ? (
                             <CircularProgress variant="indeterminate" size="24px" />
                         ) : (
@@ -80,7 +75,10 @@ export function ListCommand() {
                     </ListItemButton>
                     {isOpen &&
                         profile.commands.map((command) => (
-                            <ListItemButton onClick={() => setActiveCommand(command)}>
+                            <ListItemButton
+                                onClick={() => setActiveCommand(command)}
+                                selected={activeCommand?.commandId === command.commandId}
+                            >
                                 <Typography
                                     noWrap
                                     color="primary"

@@ -13,8 +13,9 @@ import { useEffect } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
+import { Title } from 'styles'
 import { SelectBot } from './selectBot'
-import { Left, Right, Title, Wrapper } from './styles'
+import { Left, Right, Wrapper } from './styles'
 
 export function ManageBot() {
     const dispatch = useAppDispatch()
@@ -69,12 +70,13 @@ export function ManageBot() {
                     <Button
                         component={Link}
                         to="create"
-                        startIcon={<Add fontSize="medium" />}
+                        startIcon={<Add />}
+                        size="large"
                         variant={
                             pathname == '/bot/manage/create' ? 'contained' : 'outlined'
                         }
                         color="primary"
-                        sx={{ textTransform: 'capitalize', fontSize: 18 }}
+                        sx={{ textTransform: 'capitalize' }}
                     >
                         Create Bot
                     </Button>

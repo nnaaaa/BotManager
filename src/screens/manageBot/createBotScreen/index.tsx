@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
 import { botInfoValidate } from 'utils/validation'
-import { Title } from './styles'
+import { Title } from 'styles'
 export function CreateBotScreen() {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()

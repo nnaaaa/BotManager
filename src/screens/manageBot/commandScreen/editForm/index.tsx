@@ -19,6 +19,7 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
+import { Title } from 'styles'
 import { commandValidate } from 'utils/validation'
 
 interface Props {
@@ -101,9 +102,7 @@ export function EditCommandForm({ command }: Props) {
             )}
             <Stack sx={{ maxWidth: '100%' }} my={2} spacing={2}>
                 <Stack>
-                    <Typography color="text.secondary" gutterBottom>
-                        Description
-                    </Typography>
+                    <Title>Description</Title>
                     <TextField
                         name="description"
                         variant="outlined"
@@ -119,7 +118,7 @@ export function EditCommandForm({ command }: Props) {
                 </Stack>
 
                 <Stack spacing={1} alignItems="flex-start">
-                    <Typography color="text.secondary">Argument</Typography>
+                    <Title>{`Argument (${values.args.length})`}</Title>
 
                     {values.args && values.args.length > 0 && (
                         <ListItemButton selected sx={{ width: '80%' }} disableRipple>
@@ -211,7 +210,6 @@ export function EditCommandForm({ command }: Props) {
                 </LoadingButton>
                 <LoadingButton
                     variant="contained"
-                    color="primary"
                     onClick={() => handleSubmit()}
                     loading={isLoading}
                 >

@@ -1,7 +1,6 @@
 import { LoadingButton } from '@mui/lab'
 import {
     Box,
-    Button,
     Checkbox,
     FormControlLabel,
     FormGroup,
@@ -11,10 +10,10 @@ import {
 } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { Permission } from 'entities/role.entity'
-import { FormEvent, useEffect, useMemo, useState } from 'react'
+import { FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
-import { Title } from './styles'
+import { Title } from 'styles'
 import { usePicker } from './usePicker'
 
 export function PermissionPicker() {

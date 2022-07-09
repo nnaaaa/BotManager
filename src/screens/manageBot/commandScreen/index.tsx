@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import { useAppSelector } from 'states/hooks'
 import { CreateForm } from './createForm'
 import { ListCommand } from './listCommand'
-import { Title } from './styles'
+import { Title } from 'styles'
 
 export function CommandScreen() {
     return (

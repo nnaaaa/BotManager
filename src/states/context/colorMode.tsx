@@ -28,9 +28,23 @@ export const ColorMode: React.FC<Props> = ({ children }) => {
             createTheme({
                 palette: {
                     mode,
+                    primary: {
+                        main: '#6272a4',
+                    },
+                    secondary: {
+                        main: '#bd93f9',
+                    },
                 },
                 typography: {
-                    fontFamily: 'DejaVu',
+                    // htmlFontSize: 14,
+                    // fontSize:14,
+                    fontFamily: 'OpenSans',
+                    h4: {
+                        fontSize: '2rem',
+                    },
+                    h6: {
+                        fontSize: '1rem',
+                    },
                 },
             }),
         [mode]

@@ -6,11 +6,11 @@ import { useFormik } from 'formik'
 import { ChangeEvent } from 'react'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
-import { borderStyle } from 'styles/general'
+import { borderStyle, Title } from 'styles'
 import { botInfoValidate } from 'utils/validation'
 import { DeleteButton } from './deleteButton'
 import { GenerateSecretKeyButton } from './generateKeybutton/secret'
-import { Title, useStyle, Wrapper } from './styles'
+import { useStyle, Wrapper } from './styles'
 
 export function GeneralInfomation() {
     const style = useStyle()

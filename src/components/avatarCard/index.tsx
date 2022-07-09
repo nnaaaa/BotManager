@@ -1,5 +1,5 @@
 import { Avatar, Stack, SxProps, Theme, Typography } from '@mui/material'
-import { borderStyle } from 'styles/general'
+import { borderStyle } from 'styles'
 import { useStyle } from './styles'
 
 interface Props {

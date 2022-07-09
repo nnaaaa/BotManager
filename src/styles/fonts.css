@@ -17,3 +17,10 @@
     src: local('DejaVu'), url('../assets/fonts/DejaVu/DejaVu.ttf') format('truetype');
     font-weight: 400;
 }
+
+@font-face {
+    font-family: 'OpenSans';
+    src: local('OpenSans'),
+        url('../assets/fonts/OpenSans/OpenSans.ttf') format('truetype');
+    font-weight: 400;
+}

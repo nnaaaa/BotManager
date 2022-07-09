@@ -18,7 +18,7 @@ import { useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
 import { commandValidate } from 'utils/validation'
-import { Title } from '../styles'
+import { Title } from 'styles'
 
 interface Props {
     closePopup: () => void

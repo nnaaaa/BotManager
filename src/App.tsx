@@ -18,7 +18,7 @@ import {
     QuickStart,
 } from 'screens'
 import { ColorModeContext } from 'states/context/colorMode'
-import { Wrapper } from './styles'
+import { Wrapper } from './app.styles'
 import './styles/fonts.css'
 import './styles/reset.css'
 

@@ -14,9 +14,3 @@ export const Right = styled(Box)`
 export const Left = styled(Box)`
     padding: 2rem 2rem;
 `
-
-export const Title = ({ children }: { children: string }) => (
-    <Typography variant="h6" color="text.secondary" sx={{ px: 1 }} gutterBottom>
-        {children}
-    </Typography>
-)
