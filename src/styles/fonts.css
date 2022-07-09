@@ -11,3 +11,9 @@
         url('../assets/fonts/Cascadia/Cascadia.ttf') format('truetype');
     font-weight: 400;
 }
+
+@font-face {
+    font-family: 'DejaVu';
+    src: local('DejaVu'), url('../assets/fonts/DejaVu/DejaVu.ttf') format('truetype');
+    font-weight: 400;
+}

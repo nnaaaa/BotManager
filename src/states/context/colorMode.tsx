@@ -29,6 +29,9 @@ export const ColorMode: React.FC<Props> = ({ children }) => {
                 palette: {
                     mode,
                 },
+                typography: {
+                    fontFamily: 'DejaVu',
+                },
             }),
         [mode]
     )
