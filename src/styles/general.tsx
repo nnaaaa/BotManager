@@ -11,7 +11,7 @@ export const borderStyle: SxProps<Theme> = {
 
 export const lightThemeOption: ThemeOptions = {
     palette: {
-        mode:'light',
+        mode: 'light',
         primary: {
             main: '#6272a4',
         },
@@ -44,7 +44,7 @@ export const darkThemeOption: ThemeOptions = {
         background: {
             paper: '#282a36',
             // paper: '#44475a'
-        }
+        },
     },
     typography: {
         // htmlFontSize: 14,
@@ -58,7 +58,6 @@ export const darkThemeOption: ThemeOptions = {
         },
     },
 }
-
 
 export const Title = ({ children }: { children: string }) => (
     <Typography variant="h6" fontWeight="bold">

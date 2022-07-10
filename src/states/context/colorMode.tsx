@@ -25,8 +25,7 @@ export const ColorMode: React.FC<Props> = ({ children }) => {
     }
 
     const theme = useMemo(
-        () =>
-            createTheme(mode === 'light' ? lightThemeOption : darkThemeOption),
+        () => createTheme(mode === 'light' ? lightThemeOption : darkThemeOption),
         [mode]
     )
 

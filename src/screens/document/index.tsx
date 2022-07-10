@@ -2,10 +2,14 @@ import { ChevronRight, ExpandMore } from '@mui/icons-material'
 import { TreeItem, TreeView } from '@mui/lab'
 import { Grid, Hidden } from '@mui/material'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { classDescriptionList } from './classes/data'
 import { Wrapper } from './styles'
 
 export function Document() {
     const navigate = useNavigate()
+
+    if (!classDescriptionList) return <></>
+    console.log(classDescriptionList)
 
     return (
         <Wrapper>
@@ -27,8 +31,21 @@ export function Document() {
                                 label="Class"
                                 onClick={() => navigate('classes')}
                             >
-                                <TreeItem nodeId="3" label="Client" />
-                                <TreeItem nodeId="4" label="MessageService" />
+                                {/* <TreeItem nodeId="3" label="Client" />
+                                <TreeItem nodeId="4" label="MessageService" /> */}
+                                {classDescriptionList.map((classDescription, i) => (
+                                    <TreeItem
+                                        nodeId={`${i + 3}`}
+                                        key={i}
+                                        label={classDescription.name}
+                                        onClick={() =>
+                                            navigate(
+                                                `/doc/classes/${classDescription.name}`,
+                                                {}
+                                            )
+                                        }
+                                    />
+                                ))}
                             </TreeItem>
                         </TreeView>
                     </Grid>
@@ -44,4 +61,3 @@ export function Document() {
 
 export * from './classes'
 export * from './quickstart'
-

@@ -4,9 +4,7 @@ import { Box } from '@mui/system'
 import { ReactNode, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import {
-    dracula
-} from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface Props {
     children: ReactNode | ReactNode[]

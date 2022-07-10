@@ -1,3 +1,7 @@
+import { Outlet } from 'react-router-dom'
+
 export function Classes() {
-    return <></>
+    return <Outlet />
 }
+
+export * from './description'

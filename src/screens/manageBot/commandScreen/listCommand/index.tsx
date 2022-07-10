@@ -1,15 +1,11 @@
-import { Error, KeyboardArrowDown } from '@mui/icons-material'
-import {
-    CircularProgress,
-    Grid,
-    List, ListItemButton, Stack,
-    Typography
-} from '@mui/material'
+import { Error } from '@mui/icons-material'
+import { Grid, List, Stack, Typography } from '@mui/material'
+import { ExpandButton } from 'components'
 import { CommandEntity } from 'entities/command.entity'
 import { useEffect, useState } from 'react'
 import { useAppSelector } from 'states/hooks'
-import { Title } from 'styles'
 import { EditCommandForm } from '../editForm'
+import { Command } from './command'
 
 export function ListCommand() {
     const { profile, isLoading } = useAppSelector((state) => state.bot)
@@ -44,83 +40,20 @@ export function ListCommand() {
         <Grid container spacing={3}>
             <Grid item xs={12} md={5}>
                 <List>
-                    <ListItemButton
-                        alignItems="flex-start"
+                    <ExpandButton
+                        isOpen={isOpen}
                         onClick={() => setOpen((pre) => !pre)}
-                        sx={{
-                            pt: 1,
-                        }}
-                    >
-                        <Title>{`Listed Commands (${profile.commands.length})`}</Title>
-
-                        {isLoading ? (
-                            <CircularProgress variant="indeterminate" size="24px" />
-                        ) : (
-                            <KeyboardArrowDown
-                                sx={{
-                                    mr: -1,
-                                    transform: isOpen ? 'rotate(-180deg)' : 'rotate(0)',
-                                    transition: '0.2s',
-                                }}
-                            />
-                        )}
-                    </ListItemButton>
+                        textPrimary={`Listed Commands (${profile.commands.length})`}
+                    />
                     {isOpen &&
                         profile.commands.map((command) => (
-                            <ListItemButton
+                            <Command
                                 onClick={() => setActiveCommand(command)}
                                 selected={activeCommand?.commandId === command.commandId}
-                            >
-                                <Typography
-                                    noWrap
-                                    color="primary"
-                                    sx={{ maxWidth: '30%' }}
-                                    fontFamily="Cascadia"
-                                >
-                                    {profile.name}
-                                </Typography>
-                                <Typography fontWeight="bold" fontFamily="Cascadia">
-                                    .
-                                </Typography>
-                                <Typography
-                                    noWrap
-                                    color="text.disabled"
-                                    sx={{ maxWidth: '30%' }}
-                                    fontFamily="Cascadia"
-                                >
-                                    {command.name}
-                                </Typography>
-                                <Typography fontWeight="bold" fontFamily="Cascadia">
-                                    (
-                                </Typography>
-                                <Stack
-                                    sx={{ maxWidth: '40%', overflow: 'hidden' }}
-                                    direction="row"
-                                >
-                                    {command.args.map((arg, index) => (
-                                        <>
-                                            <Typography
-                                                key={arg + index}
-                                                color="text.disabled"
-                                                fontFamily="Cascadia"
-                                            >
-                                                {arg}
-                                            </Typography>
-                                            {index !== command.args.length - 1 && (
-                                                <Typography
-                                                    fontWeight="bold"
-                                                    fontFamily="Cascadia"
-                                                >
-                                                    ,
-                                                </Typography>
-                                            )}
-                                        </>
-                                    ))}
-                                </Stack>
-                                <Typography fontWeight="bold" fontFamily="Cascadia">
-                                    )
-                                </Typography>
-                            </ListItemButton>
+                                className={profile.name}
+                                funcName={command.name}
+                                args={command.args}
+                            />
                         ))}
                 </List>
             </Grid>

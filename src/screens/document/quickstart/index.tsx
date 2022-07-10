@@ -1,17 +1,9 @@
-import {
-    Alert,
-    Box,
-    Grid,
-    Hidden,
-    MenuItem,
-    MenuList, Typography
-} from '@mui/material'
+import { Alert, Box, Grid, Hidden, MenuItem, MenuList, Typography } from '@mui/material'
 import { Markdown } from 'components/markdown'
 import { useState } from 'react'
 import { useScrollToElement } from 'react-use-scroll-to-element-hook'
 import { useLoadMdText } from './useLoadMd'
 export function QuickStart() {
-
     const [curSectionIndex, setCurSectionIndex] = useState(0)
     const { sections, error } = useLoadMdText('./quickstart.md')
     const { getScrollToElementRef, scrollToElementClickHandler } = useScrollToElement(

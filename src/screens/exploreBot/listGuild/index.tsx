@@ -1,8 +1,7 @@
-import { KeyboardArrowDown, PeopleAltOutlined } from '@mui/icons-material'
+import { PeopleAltOutlined } from '@mui/icons-material'
 import {
     Avatar,
     Box,
-    CircularProgress,
     IconButton,
     ListItem,
     ListItemAvatar,
@@ -10,6 +9,7 @@ import {
     ListItemText,
     Stack,
 } from '@mui/material'
+import { ExpandButton } from 'components'
 import { useState } from 'react'
 import { useAppSelector } from 'states/hooks'
 
@@ -20,44 +20,14 @@ export function ListGuild() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <ListItemButton
-                alignItems="flex-start"
+            <ExpandButton
+                isLoading={isLoading}
+                isOpen={isOpen}
+                startIcon={<PeopleAltOutlined />}
+                textPrimary="Guilds"
+                textSecondary="Click to see the list of guilds"
                 onClick={() => setOpen((pre) => !pre)}
-                sx={{
-                    px: 3,
-                    pt: 2.5,
-                }}
-            >
-                <PeopleAltOutlined sx={{ mr: 1 }} />
-                <ListItemText
-                    primary="Guild"
-                    primaryTypographyProps={{
-                        fontSize: 22,
-                        fontWeight: 'medium',
-                        lineHeight: '20px',
-                        mb: '2px',
-                    }}
-                    secondary="you have joined"
-                    secondaryTypographyProps={{
-                        noWrap: true,
-                        fontSize: 14,
-                        lineHeight: '16px',
-                        color: isOpen ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0.5)',
-                    }}
-                    sx={{ my: 0 }}
-                />
-                {isLoading ? (
-                    <CircularProgress variant="indeterminate" size="24px" />
-                ) : (
-                    <KeyboardArrowDown
-                        sx={{
-                            mr: -1,
-                            transform: isOpen ? 'rotate(-180deg)' : 'rotate(0)',
-                            transition: '0.2s',
-                        }}
-                    />
-                )}
-            </ListItemButton>
+            />
             {isOpen &&
                 members.map(({ guild, memberId, nickname, avatarUrl }) => (
                     <ListItemButton key={memberId}>

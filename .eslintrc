@@ -16,10 +16,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react",
-        "unused-imports"
-    ],
+    "plugins": ["react", "unused-imports"],
     "rules": {
         "unused-imports/no-unused-imports": "error"
     }

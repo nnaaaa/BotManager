@@ -1,10 +1,11 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { Header } from 'components'
-import { useLogin, useLoadMembers } from 'hooks'
+import { useLoadMembers, useLogin } from 'hooks'
 import { useContext } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import {
     Authentication,
+    ClassDescriptionScreen,
     Classes,
     CommandScreen,
     CreateBotScreen,
@@ -17,6 +18,7 @@ import {
     PermissionPicker,
     QuickStart,
 } from 'screens'
+import { classDescriptionList } from 'screens/document/classes/data'
 import { ColorModeContext } from 'states/context/colorMode'
 import { Wrapper } from './app.styles'
 import './styles/fonts.css'
@@ -37,7 +39,18 @@ function App() {
                     <Routes>
                         <Route element={<Authentication />} path="auth" />
                         <Route element={<Document />} path="doc">
-                            <Route element={<Classes />} path="classes" />
+                            <Route element={<Classes />} path="classes">
+                                {classDescriptionList.map((classDescription) => (
+                                    <Route
+                                        element={
+                                            <ClassDescriptionScreen
+                                                description={classDescription}
+                                            />
+                                        }
+                                        path={classDescription.name}
+                                    />
+                                ))}
+                            </Route>
                             <Route element={<QuickStart />} path="quickstart" />
                         </Route>
                         <Route path="bot">

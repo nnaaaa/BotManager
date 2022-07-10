@@ -2,22 +2,30 @@ import {
     Avatar,
     Box,
     Divider,
-    Grid, ListItemAvatar,
+    Grid,
+    ListItemAvatar,
     ListItemButton,
     ListItemText,
     Stack,
-    Typography
+    Typography,
 } from '@mui/material'
 import { JsonView, Markdown } from 'components'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { useAppSelector } from 'states/hooks'
+import { Title } from 'styles'
+import { Reply } from './replyTo'
 import { ScrollStyled } from './styles'
 import { useLoadMessage } from './useLoadMessage'
 
 dayjs.extend(relativeTime)
 
 export function MessageScreen() {
+    const { profile } = useAppSelector((state) => state.bot)
+
     const { activeMessage, messages, setActiveMessage } = useLoadMessage()
+
+    if (!profile) return <></>
 
     return (
         <Box width="100%">
@@ -30,18 +38,19 @@ export function MessageScreen() {
 
             <Grid container spacing={2} sx={{ mt: 4 }}>
                 <Grid item xs={12} md={5}>
+                    <Title>{`Sent total ${messages.length} messages`}</Title>
                     <ScrollStyled>
                         {messages.map((m) => (
                             <ListItemButton
                                 key={m.messageId}
-                                sx={{ alignItems: 'flex-start' }}
+                                sx={{ alignItems: 'flex-start', flexDirection: 'column' }}
                                 onClick={() => setActiveMessage(m)}
                                 selected={m.messageId === activeMessage?.messageId}
                             >
-                                <ListItemAvatar>
-                                    <Avatar src={m.author.avatarUrl} />
-                                </ListItemAvatar>
-                                <Stack spacing={2} flex={1}>
+                                <Stack direction="row" spacing={1}>
+                                    <ListItemAvatar>
+                                        <Avatar src={m.author.avatarUrl} />
+                                    </ListItemAvatar>
                                     <ListItemText
                                         primary={m.author.nickname}
                                         primaryTypographyProps={{
@@ -49,14 +58,26 @@ export function MessageScreen() {
                                         }}
                                         secondary={`${dayjs(m.createdAt).fromNow()}`}
                                     />
-                                    <Markdown text={m.content} />
-                                    <Divider flexItem />
                                 </Stack>
+                                <Box width="100%">
+                                    <Markdown text={m.content} />
+                                </Box>
+                                <Reply replyTo={m.replyTo} />
+                                <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
+                                    <Typography>to</Typography>
+                                    <Typography color="primary">
+                                        {m.channel.name}
+                                    </Typography>
+                                    <Typography>channel</Typography>
+                                </Stack>
+                                <Divider flexItem />
                             </ListItemButton>
                         ))}
                     </ScrollStyled>
                 </Grid>
                 <Grid item xs={12} md={7} sx={{ overflow: 'hidden' }}>
+                    <Title>{`Details`}</Title>
+
                     <ScrollStyled>
                         {activeMessage && <JsonView json={activeMessage} />}
                     </ScrollStyled>
