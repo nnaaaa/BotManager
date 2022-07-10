@@ -1,5 +1,6 @@
 import { createTheme, Theme } from '@mui/material'
 import { createContext, useMemo, useState } from 'react'
+import { darkThemeOption, lightThemeOption } from 'styles'
 
 interface IColorModeContext {
     toggleColorMode: () => void
@@ -25,28 +26,7 @@ export const ColorMode: React.FC<Props> = ({ children }) => {
 
     const theme = useMemo(
         () =>
-            createTheme({
-                palette: {
-                    mode,
-                    primary: {
-                        main: '#6272a4',
-                    },
-                    secondary: {
-                        main: '#bd93f9',
-                    },
-                },
-                typography: {
-                    // htmlFontSize: 14,
-                    // fontSize:14,
-                    fontFamily: 'OpenSans',
-                    h4: {
-                        fontSize: '2rem',
-                    },
-                    h6: {
-                        fontSize: '1rem',
-                    },
-                },
-            }),
+            createTheme(mode === 'light' ? lightThemeOption : darkThemeOption),
         [mode]
     )
 

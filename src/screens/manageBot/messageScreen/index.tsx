@@ -2,21 +2,15 @@ import {
     Avatar,
     Box,
     Divider,
-    Grid,
-    List,
-    ListItemAvatar,
+    Grid, ListItemAvatar,
     ListItemButton,
     ListItemText,
     Stack,
-    Typography,
+    Typography
 } from '@mui/material'
-import { useMessageSocket } from 'apis/socket/useMessage.socket'
 import { JsonView, Markdown } from 'components'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { MessageEntity } from 'entities/message.entity'
-import { useEffect, useState } from 'react'
-import { useAppSelector } from 'states/hooks'
 import { ScrollStyled } from './styles'
 import { useLoadMessage } from './useLoadMessage'
 

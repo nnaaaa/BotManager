@@ -1,7 +1,7 @@
 import { Env } from 'configs'
 import Cookies from 'js-cookie'
 import { createContext, ReactNode, useMemo } from 'react'
-import { connect, Manager, Socket } from 'socket.io-client'
+import { Manager, Socket } from 'socket.io-client'
 
 interface ISocketContext {
     memberSocket: Socket | null

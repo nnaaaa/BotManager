@@ -1,8 +1,8 @@
+import { ChevronRight, ExpandMore } from '@mui/icons-material'
 import { TreeItem, TreeView } from '@mui/lab'
 import { Grid, Hidden } from '@mui/material'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { Wrapper } from './styles'
-import { ExpandMore, ChevronRight } from '@mui/icons-material'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 export function Document() {
     const navigate = useNavigate()
@@ -44,3 +44,4 @@ export function Document() {
 
 export * from './classes'
 export * from './quickstart'
+

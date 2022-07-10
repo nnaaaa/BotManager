@@ -4,25 +4,14 @@ import {
     Grid,
     Hidden,
     MenuItem,
-    MenuList,
-    Stack,
-    Typography,
+    MenuList, Typography
 } from '@mui/material'
 import { Markdown } from 'components/markdown'
-import React, { Suspense, useEffect, useState } from 'react'
-import { useLoadMdText } from './useLoadMd'
+import { useState } from 'react'
 import { useScrollToElement } from 'react-use-scroll-to-element-hook'
+import { useLoadMdText } from './useLoadMd'
 export function QuickStart() {
-    // const [text, setText] = useState('')
-    // const [error, setError] = useState('')
 
-    // useEffect(() => {
-    //     import('./quickstart.md')
-    //         .then((res) => fetch(res.default))
-    //         .then((res) => res.text())
-    //         .then((t) => setText(t))
-    //         .catch((e) => setError('Can not load file'))
-    // }, [])
     const [curSectionIndex, setCurSectionIndex] = useState(0)
     const { sections, error } = useLoadMdText('./quickstart.md')
     const { getScrollToElementRef, scrollToElementClickHandler } = useScrollToElement(

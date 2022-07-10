@@ -1,5 +1,4 @@
-import { IconButton, IconButtonProps, Typography, Box } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 export const Wrapper = styled(Box)`

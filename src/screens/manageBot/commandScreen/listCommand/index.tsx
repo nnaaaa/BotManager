@@ -1,17 +1,9 @@
 import { Error, KeyboardArrowDown } from '@mui/icons-material'
 import {
-    Avatar,
-    Box,
-    Button,
     CircularProgress,
     Grid,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemButton,
-    ListItemText,
-    Stack,
-    Typography,
+    List, ListItemButton, Stack,
+    Typography
 } from '@mui/material'
 import { CommandEntity } from 'entities/command.entity'
 import { useEffect, useState } from 'react'

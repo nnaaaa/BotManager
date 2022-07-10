@@ -1,17 +1,11 @@
-import { ContentCopy, ContentCopyOutlined } from '@mui/icons-material'
-import { Alert, Button } from '@mui/material'
+import { ContentCopyOutlined } from '@mui/icons-material'
+import { Button } from '@mui/material'
 import { Box } from '@mui/system'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import {
-    dark,
-    dracula,
-    synthwave84,
-    materialDark,
-    materialLight,
-    vscDarkPlus,
+    dracula
 } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface Props {

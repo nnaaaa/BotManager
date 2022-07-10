@@ -1,4 +1,4 @@
-import { Avatar, Stack, SxProps, Theme, Typography } from '@mui/material'
+import { Avatar, Stack, Typography } from '@mui/material'
 import { borderStyle } from 'styles'
 import { useStyle } from './styles'
 

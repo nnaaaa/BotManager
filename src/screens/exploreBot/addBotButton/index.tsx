@@ -1,30 +1,7 @@
-import { LoadingButton } from '@mui/lab'
-import {
-    Alert,
-    Avatar,
-    Card,
-    CardContent,
-    CardHeader,
-    Checkbox,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    FormControlLabel,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
-    Snackbar,
-    Stack,
-} from '@mui/material'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
-import { useMemberSocket, useRoleSocket } from 'apis/socket'
 import { Popup } from 'components'
 import { BotEntity } from 'entities/bot.entity'
 import { MemberEntity } from 'entities/member.entity'
-import { RoleEntity } from 'entities/role.entity'
 import { useState } from 'react'
 import { PermissionConfirm } from './permissionConfirm'
 import { SelectGuild } from './selectGuild'

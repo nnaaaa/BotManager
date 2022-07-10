@@ -1,24 +1,19 @@
 import { LoadingButton } from '@mui/lab'
 import {
-    Avatar,
-    Box,
-    DialogActions,
+    Avatar, DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle,
-    FormGroup,
-    ListItem,
+    DialogTitle, ListItem,
     ListItemAvatar,
     Stack,
     TextField,
-    Typography,
+    Typography
 } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
 import { commandValidate } from 'utils/validation'
-import { Title } from 'styles'
 
 interface Props {
     closePopup: () => void

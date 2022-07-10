@@ -1,14 +1,11 @@
-import { ExpandMore } from '@mui/icons-material'
 import {
-    Avatar,
-    Button,
-    Card,
+    Avatar, Card,
     CardActionArea,
     CardActions,
     CardContent,
     Collapse,
     Stack,
-    Typography,
+    Typography
 } from '@mui/material'
 import { BotEntity } from 'entities/bot.entity'
 import { useState } from 'react'
