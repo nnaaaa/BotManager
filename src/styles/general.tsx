@@ -13,11 +13,14 @@ export const lightThemeOption: ThemeOptions = {
     palette: {
         mode: 'light',
         primary: {
-            main: '#6272a4',
+            main: '#2496ed',
         },
         secondary: {
             main: '#bd93f9',
         },
+        text: {
+            disabled: '#000000',
+        }
     },
     typography: {
         // htmlFontSize: 14,
@@ -36,15 +39,22 @@ export const darkThemeOption: ThemeOptions = {
     palette: {
         mode: 'dark',
         primary: {
-            main: '#6272a4',
-        },
-        secondary: {
-            main: '#bd93f9',
+            main: '#9cd4f7',
         },
         background: {
-            paper: '#282a36',
-            // paper: '#44475a'
+            default: '#031f30',
+            paper: '#0f1c24'
         },
+        // primary: {
+        //     main: '#dd637d',
+        // },
+        // background: {
+        //     paper: '#581221',
+        //     default: '#3a0c16'
+        // },
+        text: {
+            disabled: '#d3d4d4',
+        }
     },
     typography: {
         // htmlFontSize: 14,

@@ -9,7 +9,6 @@ export function Document() {
     const navigate = useNavigate()
 
     if (!classDescriptionList) return <></>
-    console.log(classDescriptionList)
 
     return (
         <Wrapper>
@@ -24,24 +23,40 @@ export function Document() {
                             <TreeItem
                                 nodeId="1"
                                 label="Quick Start"
-                                onClick={() => navigate('quickstart')}
-                            />
-                            <TreeItem
-                                nodeId="2"
-                                label="Class"
-                                onClick={() => navigate('classes')}
+                                onClick={() => navigate('/doc/quickstart/register')}
                             >
-                                {/* <TreeItem nodeId="3" label="Client" />
-                                <TreeItem nodeId="4" label="MessageService" /> */}
+                                <TreeItem
+                                    nodeId="2"
+                                    label="Register"
+                                    onClick={() =>
+                                        navigate(
+                                            `/doc/quickstart/register`
+                                        )
+                                    }
+                                />
+                                <TreeItem
+                                    nodeId="3"
+                                    label="Implement"
+                                    onClick={() =>
+                                        navigate(
+                                            `/doc/quickstart/implement`
+                                        )
+                                    }
+                                />
+                            </TreeItem>
+                            <TreeItem
+                                nodeId="4"
+                                label="Class"
+                                onClick={() => navigate(`/doc/classes/Client`)}
+                            >
                                 {classDescriptionList.map((classDescription, i) => (
                                     <TreeItem
-                                        nodeId={`${i + 3}`}
-                                        key={i}
+                                        nodeId={`${i + 5}`}
+                                        key={classDescription.name + i}
                                         label={classDescription.name}
                                         onClick={() =>
                                             navigate(
-                                                `/doc/classes/${classDescription.name}`,
-                                                {}
+                                                `/doc/classes/${classDescription.name}`
                                             )
                                         }
                                     />
@@ -61,3 +76,4 @@ export function Document() {
 
 export * from './classes'
 export * from './quickstart'
+

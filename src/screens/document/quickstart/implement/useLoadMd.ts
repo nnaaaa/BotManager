@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useLoadMdText = (path: string) => {
+export const useLoadMdText = () => {
     const [installText, setInstallText] = useState('')
     const [usageText, setUsageText] = useState('')
     const [error, setError] = useState('')
@@ -16,7 +16,7 @@ export const useLoadMdText = (path: string) => {
             .then((res) => res.text())
             .then((t) => setUsageText(t))
             .catch((e) => setError('Can not load file'))
-    }, [path])
+    }, [])
 
     return {
         sections: [

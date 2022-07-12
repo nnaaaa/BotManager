@@ -29,7 +29,7 @@ export function Home() {
                     size="large"
                     variant="contained"
                     component={Link}
-                    to="doc/quickstart"
+                    to="doc/quickstart/implement"
                 >
                     Quick Start
                 </Button>

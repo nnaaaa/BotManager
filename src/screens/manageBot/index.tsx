@@ -1,4 +1,4 @@
-import { Add, BorderColor, Message, Shield, SmartToy } from '@mui/icons-material'
+import { Add, BorderColor, Message, PeopleAlt, Shield, SmartToy } from '@mui/icons-material'
 import {
     Button,
     Grid,
@@ -103,8 +103,8 @@ export function ManageBot() {
                             </ListItemButton>
                             <ListItemButton
                                 component={Link}
-                                to="addCommand"
-                                selected={pathname == '/bot/manage/addCommand'}
+                                to="command"
+                                selected={pathname == '/bot/manage/command'}
                             >
                                 <ListItemIcon>
                                     <BorderColor fontSize="medium" />
@@ -134,6 +134,15 @@ export function ManageBot() {
                                     <Message fontSize="medium" />
                                 </ListItemIcon>
                                 <ListItemText>Sent Message</ListItemText>
+                            </ListItemButton>
+
+                            <ListItemButton
+                                disabled={true}
+                            >
+                                <ListItemIcon>
+                                    <PeopleAlt fontSize="medium" />
+                                </ListItemIcon>
+                                <ListItemText>Created Channel</ListItemText>
                             </ListItemButton>
                         </Stack>
                     </>

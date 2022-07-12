@@ -2,6 +2,7 @@ import { Grid, Link, ListItem, Stack, Typography } from '@mui/material'
 import { ExpandButton } from 'components'
 import { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import { ArrayProps } from './arrayProp'
 import { ClassDescription } from './class/type'
 
 interface Props {
@@ -33,7 +34,7 @@ export function ClassDescriptionScreen({ description }: Props) {
                         />
                         {isOpenProps &&
                             description.properties.map((property) => (
-                                <ListItem>
+                                <ListItem key={property.name}>
                                     <Typography variant="h6">
                                         {property.name}:&nbsp;
                                     </Typography>
@@ -42,12 +43,10 @@ export function ClassDescriptionScreen({ description }: Props) {
                                             component={RouterLink}
                                             to={`/doc/classes/${property.type.url}`}
                                         >
-                                            {property.type.name}
+                                            <ArrayProps name={property.type.name} />
                                         </Link>
                                     ) : (
-                                        <Typography color="primary">
-                                            {property.type.name}
-                                        </Typography>
+                                        <ArrayProps name={property.type.name} />
                                     )}
                                 </ListItem>
                             ))}
@@ -62,7 +61,7 @@ export function ClassDescriptionScreen({ description }: Props) {
                         />
                         {isOpenMethods &&
                             description.methods.map((method) => (
-                                <ListItem>
+                                <ListItem key={method.name}>
                                     <Typography variant="h6">{method.name}</Typography>
                                     <Typography fontWeight="bold" fontFamily="Cascadia">
                                         (

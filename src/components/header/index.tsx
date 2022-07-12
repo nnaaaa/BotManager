@@ -40,6 +40,7 @@ export function Header() {
                             </Button>
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={2}>
+                            {/* <SearchForm/> */}
                             <ModeSwitch />
                             <ProfileButton />
                         </Stack>

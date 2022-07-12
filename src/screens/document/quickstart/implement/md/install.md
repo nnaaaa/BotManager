@@ -3,11 +3,11 @@
 with **npm**
 
 ```shell
-npm i @disneyjs/bot
+npm i disney.js
 ```
 
 or **yarn**
 
 ```shell
-yarn add @disneyjs/bot
+yarn add disney.js
 ```

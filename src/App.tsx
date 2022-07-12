@@ -16,7 +16,9 @@ import {
     ManageBot,
     MessageScreen,
     PermissionPicker,
-    QuickStart,
+    Implement,
+    BotRegister,
+    Quickstart
 } from 'screens'
 import { classDescriptionList } from 'screens/document/classes/data'
 import { ColorModeContext } from 'states/context/colorMode'
@@ -42,6 +44,7 @@ function App() {
                             <Route element={<Classes />} path="classes">
                                 {classDescriptionList.map((classDescription) => (
                                     <Route
+                                        key={classDescription.name}
                                         element={
                                             <ClassDescriptionScreen
                                                 description={classDescription}
@@ -51,14 +54,17 @@ function App() {
                                     />
                                 ))}
                             </Route>
-                            <Route element={<QuickStart />} path="quickstart" />
+                            <Route element={<Quickstart />} path="quickstart">
+                                <Route element={<BotRegister />} path="register" />
+                                <Route element={<Implement />} path="implement" />
+                            </Route>
                         </Route>
                         <Route path="bot">
                             <Route element={<ManageBot />} path="manage">
                                 <Route element={<GeneralInfomation />} path="general" />
                                 <Route element={<PermissionPicker />} path="permission" />
                                 <Route element={<CreateBotScreen />} path="create" />
-                                <Route element={<CommandScreen />} path="addCommand" />
+                                <Route element={<CommandScreen />} path="command" />
                                 <Route element={<MessageScreen />} path="message" />
                             </Route>
                             <Route element={<ExploreBot />} path="explore" />
