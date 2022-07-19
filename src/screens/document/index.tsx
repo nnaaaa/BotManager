@@ -28,20 +28,12 @@ export function Document() {
                                 <TreeItem
                                     nodeId="2"
                                     label="Register"
-                                    onClick={() =>
-                                        navigate(
-                                            `/doc/quickstart/register`
-                                        )
-                                    }
+                                    onClick={() => navigate(`/doc/quickstart/register`)}
                                 />
                                 <TreeItem
                                     nodeId="3"
                                     label="Implement"
-                                    onClick={() =>
-                                        navigate(
-                                            `/doc/quickstart/implement`
-                                        )
-                                    }
+                                    onClick={() => navigate(`/doc/quickstart/implement`)}
                                 />
                             </TreeItem>
                             <TreeItem
@@ -76,4 +68,3 @@ export function Document() {
 
 export * from './classes'
 export * from './quickstart'
-

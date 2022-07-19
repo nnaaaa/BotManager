@@ -26,7 +26,7 @@ export default function Login({}: Props) {
             try {
                 await dispatch(authActions.loginAsync(values))
                 unwrapResult(await dispatch(authActions.getProfile()))
-                navigate('/', { replace: true })
+                navigate('/bot/manage', { replace: true })
             } catch {
                 setFieldError('account', "Account doesn't exist")
             }

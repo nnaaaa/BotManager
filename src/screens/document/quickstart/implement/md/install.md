@@ -3,7 +3,7 @@
 with **npm**
 
 ```shell
-npm i disney.js
+npm install disney.js
 ```
 
 or **yarn**

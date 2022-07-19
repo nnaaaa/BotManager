@@ -1,12 +1,43 @@
-import { Grid, Hidden, Link, MenuList, Stack, Typography } from '@mui/material'
-import { useState } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Grid, Hidden, MenuItem, MenuList, Stack, Typography } from '@mui/material'
+import { useMemo, useState } from 'react'
 import { Title } from 'styles'
+
+import * as createBotImage from 'assets/images/createBot.png'
+import * as createCommandImage from 'assets/images/createCommand.png'
+import * as createPermissionImage from 'assets/images/createPermission.png'
+import * as loginImage from 'assets/images/login.png'
+import { useScrollToElement } from 'react-use-scroll-to-element-hook'
+
 export function BotRegister() {
     const [curSectionIndex, setCurSectionIndex] = useState(0)
-    // const { getScrollToElementRef, scrollToElementClickHandler } = useScrollToElement(
-    //     sections.map((s) => s.title)
-    // )
+    const sections = useMemo(
+        () => [
+            {
+                title: 'Login',
+                content: 'Login is reprequisite for manage the bot',
+                image: loginImage.default,
+            },
+            {
+                title: 'Bot',
+                content: 'Create your own bot',
+                image: createBotImage.default,
+            },
+            {
+                title: "Bot's Command",
+                content: 'Create command for your bot',
+                image: createCommandImage.default,
+            },
+            {
+                title: 'Permission',
+                content: 'Tick permissions which you need',
+                image: createPermissionImage.default,
+            },
+        ],
+        []
+    )
+    const { getScrollToElementRef, scrollToElementClickHandler } = useScrollToElement(
+        sections.map((s) => s.title)
+    )
 
     // if (error) return <Alert severity="error">{error}</Alert>
 
@@ -16,44 +47,26 @@ export function BotRegister() {
                 <Typography variant="h4" fontWeight="bold">
                     Register
                 </Typography>
-                {/* {sections.map((section, index) => {
+                {sections.map((section, index) => {
                     return (
-                        <Box
-                            sx={{ mb: 8 }}
-                            key={index}
+                        <Stack
+                            sx={{ mt: 4 }}
                             ref={getScrollToElementRef(section.title) as any}
+                            spacing={2}
                         >
-                            <Markdown text={section.text} />
-                        </Box>
+                            <Title>{`${index + 1}. ${section.content}`}</Title>
+                            {/* <Link component={RouterLink} to='/auth'>here</Link> */}
+                            <img src={section.image} />
+                        </Stack>
                     )
-                })} */}
-
-                <Stack sx={{ mt:4 }}>
-                    <Title>1. Login</Title>
-                    <Link component={RouterLink} to='/auth'>here</Link>
-                </Stack>
-
-                <Stack sx={{ mt:4 }}>
-                    <Title>2. Register bot</Title>
-                    <Link component={RouterLink} to='/bot/manage/create'>here</Link>
-                </Stack>
-
-                <Stack sx={{ mt:4 }}>
-                    <Title>3. Create bot's commands</Title>
-                    <Link component={RouterLink} to='/bot/manage/command'>here</Link>
-                </Stack>
-
-                <Stack sx={{ mt:4 }}>
-                    <Title>4. Tick permissions which you need</Title>
-                    <Link component={RouterLink} to='/bot/manage/permission'>here</Link>
-                </Stack>
+                })}
             </Grid>
 
             <Hidden mdDown>
                 <Grid item md={3}>
                     <MenuList sx={{ position: 'fixed', height: '100vh', width: 250 }}>
                         <Typography>Content</Typography>
-                        {/* {sections.map((ele, index) => {
+                        {sections.map((ele, index) => {
                             return (
                                 <MenuItem
                                     selected={index === curSectionIndex}
@@ -68,7 +81,7 @@ export function BotRegister() {
                                     </Typography>
                                 </MenuItem>
                             )
-                        })} */}
+                        })}
                     </MenuList>
                 </Grid>
             </Hidden>

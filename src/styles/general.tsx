@@ -20,7 +20,7 @@ export const lightThemeOption: ThemeOptions = {
         },
         text: {
             disabled: '#000000',
-        }
+        },
     },
     typography: {
         // htmlFontSize: 14,
@@ -43,7 +43,7 @@ export const darkThemeOption: ThemeOptions = {
         },
         background: {
             default: '#031f30',
-            paper: '#0f1c24'
+            paper: '#0f1c24',
         },
         // primary: {
         //     main: '#dd637d',
@@ -54,7 +54,7 @@ export const darkThemeOption: ThemeOptions = {
         // },
         text: {
             disabled: '#d3d4d4',
-        }
+        },
     },
     typography: {
         // htmlFontSize: 14,

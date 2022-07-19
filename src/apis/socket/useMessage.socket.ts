@@ -1,4 +1,5 @@
 import { BotEntity } from 'entities/bot.entity'
+import { ButtonEntity } from 'entities/button.entity'
 import { MessageEntity } from 'entities/message.entity'
 import { useContext, useEffect } from 'react'
 import { SocketContext } from 'states/context/socket'
@@ -6,9 +7,10 @@ import { SocketErrorDto } from './error.dto'
 
 export const useMessageSocket = (
     bot: BotEntity | undefined | null,
-    onCreate: (newMessage: MessageEntity) => void
+    onCreate: (newMessage: MessageEntity) => void,
+    onUpdate: (newMessage: MessageEntity) => void
 ) => {
-    const { messageSocket } = useContext(SocketContext)
+    const { messageSocket, buttonSocket } = useContext(SocketContext)
 
     const getAllFromBot = async () => {
         if (!messageSocket || !bot) return
@@ -25,6 +27,10 @@ export const useMessageSocket = (
 
         return data
     }
+    const clickButton = async (button: ButtonEntity) => {
+        if (!buttonSocket || !bot) return
+        buttonSocket.emit('click', button)
+    }
 
     useEffect(() => {
         if (!messageSocket || !bot) return
@@ -34,6 +40,12 @@ export const useMessageSocket = (
                 onCreate(data)
             }
         )
+        messageSocket.on(
+            `botManager/${bot.botId}/message/update`,
+            (data: MessageEntity) => {
+                onUpdate(data)
+            }
+        )
 
         return () => {
             if (!messageSocket || !bot) return
@@ -41,5 +53,5 @@ export const useMessageSocket = (
         }
     }, [messageSocket])
 
-    return { getAllFromBot }
+    return { getAllFromBot, clickButton }
 }

@@ -1,4 +1,4 @@
-import { BotInputMessage } from './class/botInputMessage';
+import { BotInputMessage } from './class/botInputMessage'
 import { ChannelEntity } from './class/channelEntity'
 import { Client } from './class/client'
 import { InspectedCommand } from './class/inspectedCommand'
@@ -12,7 +12,7 @@ export const classDescriptionList: ClassDescription[] = [
     MessageEntity,
     ChannelEntity,
     InspectedCommand,
-    BotInputMessage
+    BotInputMessage,
 ]
 
 // export * from './type'

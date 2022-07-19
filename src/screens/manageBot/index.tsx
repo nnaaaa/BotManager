@@ -1,4 +1,11 @@
-import { Add, BorderColor, Message, PeopleAlt, Shield, SmartToy } from '@mui/icons-material'
+import {
+    Add,
+    BorderColor,
+    Message,
+    PeopleAlt,
+    Shield,
+    SmartToy,
+} from '@mui/icons-material'
 import {
     Button,
     Grid,
@@ -136,9 +143,7 @@ export function ManageBot() {
                                 <ListItemText>Sent Message</ListItemText>
                             </ListItemButton>
 
-                            <ListItemButton
-                                disabled={true}
-                            >
+                            <ListItemButton disabled={true}>
                                 <ListItemIcon>
                                     <PeopleAlt fontSize="medium" />
                                 </ListItemIcon>

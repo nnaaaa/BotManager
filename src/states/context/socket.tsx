@@ -7,12 +7,14 @@ interface ISocketContext {
     memberSocket: Socket | null
     roleSocket: Socket | null
     messageSocket: Socket | null
+    buttonSocket: Socket | null
 }
 
 export const SocketContext = createContext<ISocketContext>({
     memberSocket: null,
     roleSocket: null,
     messageSocket: null,
+    buttonSocket: null,
 })
 
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
@@ -33,9 +35,12 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
     const memberSocket = useMemo(() => socket.socket('/member'), [socket])
     const roleSocket = useMemo(() => socket.socket('/role'), [socket])
     const messageSocket = useMemo(() => socket.socket('/message'), [socket])
+    const buttonSocket = useMemo(() => socket.socket('/button'), [socket])
 
     return (
-        <SocketContext.Provider value={{ memberSocket, roleSocket, messageSocket }}>
+        <SocketContext.Provider
+            value={{ memberSocket, roleSocket, messageSocket, buttonSocket }}
+        >
             {children}
         </SocketContext.Provider>
     )

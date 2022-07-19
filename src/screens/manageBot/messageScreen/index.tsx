@@ -1,8 +1,10 @@
 import {
     Avatar,
     Box,
+    Button,
     Divider,
     Grid,
+    ListItem,
     ListItemAvatar,
     ListItemButton,
     ListItemText,
@@ -23,7 +25,7 @@ dayjs.extend(relativeTime)
 export function MessageScreen() {
     const { profile } = useAppSelector((state) => state.bot)
 
-    const { activeMessage, messages, setActiveMessage } = useLoadMessage()
+    const { activeMessage, messages, setActiveMessage, clickButton } = useLoadMessage()
 
     if (!profile) return <></>
 
@@ -41,13 +43,10 @@ export function MessageScreen() {
                     <Title>{`Sent total ${messages.length} messages`}</Title>
                     <ScrollStyled>
                         {messages.map((m) => (
-                            <ListItemButton
-                                key={m.messageId}
-                                sx={{ alignItems: 'flex-start', flexDirection: 'column' }}
-                                onClick={() => setActiveMessage(m)}
-                                selected={m.messageId === activeMessage?.messageId}
-                            >
-                                <Stack direction="row" spacing={1}>
+                            <Stack>
+                                <ListItemButton
+                                    selected={m.messageId === activeMessage?.messageId}
+                                >
                                     <ListItemAvatar>
                                         <Avatar src={m.author.avatarUrl} />
                                     </ListItemAvatar>
@@ -58,25 +57,49 @@ export function MessageScreen() {
                                         }}
                                         secondary={`${dayjs(m.createdAt).fromNow()}`}
                                     />
-                                </Stack>
-                                <Box width="100%">
-                                    <Markdown text={m.content} />
-                                </Box>
-                                <Reply replyTo={m.replyTo} />
-                                <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
-                                    <Typography>to</Typography>
-                                    <Typography color="primary">
-                                        {m.channel.name}
-                                    </Typography>
-                                    <Typography>channel</Typography>
-                                </Stack>
-                                <Divider flexItem />
-                            </ListItemButton>
+                                </ListItemButton>
+                                <ListItem
+                                    sx={{
+                                        flexDirection: 'column',
+                                        alignItems: 'stretch',
+                                    }}
+                                    key={m.messageId}
+                                    onClick={() => setActiveMessage(m)}
+                                >
+                                    <Box width="100%">
+                                        <Markdown text={m.content} />
+                                    </Box>
+                                    <Grid container sx={{ mb: 1 }} spacing={1}>
+                                        {m.action.buttons.map((b) => (
+                                            <Grid item>
+                                                <Button
+                                                    key={b.buttonId}
+                                                    variant="contained"
+                                                    size="small"
+                                                    sx={{ textTransform: 'initial' }}
+                                                    onClick={() => clickButton(b)}
+                                                >
+                                                    {b.name}
+                                                </Button>
+                                            </Grid>
+                                        ))}
+                                    </Grid>
+                                    <Reply replyTo={m.replyTo} />
+                                    <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
+                                        <Typography>to</Typography>
+                                        <Typography color="primary">
+                                            {m.channel.name}
+                                        </Typography>
+                                        <Typography>channel</Typography>
+                                    </Stack>
+                                    <Divider flexItem />
+                                </ListItem>
+                            </Stack>
                         ))}
                     </ScrollStyled>
                 </Grid>
                 <Grid item xs={12} md={7} sx={{ overflow: 'hidden' }}>
-                    <Title>{`Details`}</Title>
+                    <Title>Details</Title>
 
                     <ScrollStyled>
                         {activeMessage && <JsonView json={activeMessage} />}

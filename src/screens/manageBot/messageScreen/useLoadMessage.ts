@@ -7,9 +7,22 @@ export const useLoadMessage = () => {
     const { profile } = useAppSelector((state) => state.bot)
     const [messages, setMessages] = useState<MessageEntity[]>([])
     const [activeMessage, setActiveMessage] = useState<MessageEntity>()
-    const { getAllFromBot } = useMessageSocket(profile, (newMessage) => {
-        setMessages((pre) => [newMessage, ...pre])
-    })
+    const { getAllFromBot, clickButton } = useMessageSocket(
+        profile,
+        (newMessage) => {
+            console.log(newMessage)
+            setMessages((pre) => [newMessage, ...pre])
+        },
+        (newMessage) => {
+            setMessages((pre) =>
+                pre.map((message) =>
+                    message.messageId === newMessage.messageId
+                        ? { ...message, ...newMessage }
+                        : message
+                )
+            )
+        }
+    )
 
     useEffect(() => {
         const fetchMessages = async () => {
@@ -28,5 +41,5 @@ export const useLoadMessage = () => {
         }
     }, [messages])
 
-    return { activeMessage, messages, setActiveMessage }
+    return { activeMessage, messages, setActiveMessage, clickButton }
 }

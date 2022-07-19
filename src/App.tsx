@@ -18,7 +18,7 @@ import {
     PermissionPicker,
     Implement,
     BotRegister,
-    Quickstart
+    Quickstart,
 } from 'screens'
 import { classDescriptionList } from 'screens/document/classes/data'
 import { ColorModeContext } from 'states/context/colorMode'
