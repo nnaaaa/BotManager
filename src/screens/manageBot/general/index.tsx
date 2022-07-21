@@ -1,9 +1,9 @@
 import { Box, Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
-import { TextCopy, InputImage } from 'components'
+import { InputImage, TextCopy } from 'components'
 import { AvatarCard } from 'components/avatarCard'
 import { useFormik } from 'formik'
-import { ChangeEvent } from 'react'
+import { useUploadImage } from 'hooks'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
 import { borderStyle, Title } from 'styles'
@@ -17,12 +17,9 @@ export function GeneralInfomation() {
     const dispatch = useAppDispatch()
     const { profile, isLoading } = useAppSelector((state) => state.bot)
 
-    const onUploadAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target && e.target.files) {
-            console.log(URL.createObjectURL(e.target.files[0]))
-            setValues({ ...values, avatarUrl: URL.createObjectURL(e.target.files[0]) })
-        }
-    }
+    const { onUpload, isLoading: uploadImageLoading } = useUploadImage((url) =>
+        setValues({ ...values, avatarUrl: url })
+    )
 
     const { errors, values, touched, handleSubmit, handleChange, setValues } = useFormik({
         enableReinitialize: true,
@@ -61,8 +58,8 @@ export function GeneralInfomation() {
                 <Grid item xs={12} md={3}>
                     <Stack>
                         <Title>Bot icon</Title>
-                        <InputImage name="avatarFile" onChange={onUploadAvatar}>
-                            <AvatarCard url={values.avatarUrl} />
+                        <InputImage name="avatarFile" onChange={onUpload} isDisabled={uploadImageLoading}>
+                            <AvatarCard url={values.avatarUrl} isDisabled={uploadImageLoading}/>
                         </InputImage>
                     </Stack>
                 </Grid>

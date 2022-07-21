@@ -69,6 +69,26 @@ export function MessageScreen() {
                                     <Box width="100%">
                                         <Markdown text={m.content} />
                                     </Box>
+
+                                    <Grid container sx={{ mb: 1 }} spacing={1}>
+                                        {m.action.reacts.map((r) => (
+                                            <Grid item>
+                                                <Button
+                                                    size="small"
+                                                    variant="outlined"
+                                                    startIcon={
+                                                        <Avatar
+                                                            src={r.emoji.imageUrl}
+                                                            sx={{ width: 14, height: 14 }}
+                                                        />
+                                                    }
+                                                >
+                                                    1
+                                                </Button>
+                                            </Grid>
+                                        ))}
+                                    </Grid>
+
                                     <Grid container sx={{ mb: 1 }} spacing={1}>
                                         {m.action.buttons.map((b) => (
                                             <Grid item>
@@ -78,6 +98,8 @@ export function MessageScreen() {
                                                     size="small"
                                                     sx={{ textTransform: 'initial' }}
                                                     onClick={() => clickButton(b)}
+                                                    color={b.style}
+                                                    disabled={b.isDisabled}
                                                 >
                                                     {b.name}
                                                 </Button>

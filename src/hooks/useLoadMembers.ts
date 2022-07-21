@@ -20,7 +20,12 @@ export const useLoadMembers = () => {
         }
         fetchMember()
             .then((members) => {
-                dispatch(memberActions.set(members || []))
+                if (members) {
+                    dispatch(memberActions.set(members))
+                }
+                else {
+                    dispatch(memberActions.clear())
+                }
             })
             .catch(() => {
                 dispatch(memberActions.endLoading())

@@ -48,22 +48,7 @@ export class BotAPI {
         return res
     }
 
-    static async uploadImage(files: File) {
-        const formData = new FormData()
-        formData.append('avatar', files)
-
-        const res = await AxiosClient.post<FormData, AxiosResponse<string>>(
-            `${BotAPI.namespace}/uploadAvatar`,
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            }
-        )
-        return res
-    }
-
+    
     static async generateNewSecretKey(genKeyDto: GenSecretKeyDto) {
         const res = await AxiosClient.post<GenSecretKeyDto, AxiosResponse<string>>(
             `${BotAPI.namespace}/genSecretKey`,

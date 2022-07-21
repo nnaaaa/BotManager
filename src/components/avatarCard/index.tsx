@@ -1,22 +1,25 @@
-import { Avatar, Stack, Typography } from '@mui/material'
-import { borderStyle } from 'styles'
-import { useStyle } from './styles'
-
+import { Avatar, MenuItem, Stack, Typography } from '@mui/material'
 interface Props {
     url: string | undefined
+    isDisabled?: boolean
 }
 
-export function AvatarCard({ url }: Props) {
-    const style = useStyle()
-
+export function AvatarCard({ url,isDisabled }: Props) {
+    
+    console.log(url)
     return (
-        <Stack
-            sx={borderStyle}
-            className={style.avatarWrapper}
-            alignItems="center"
-            justifyContent="center"
+        <MenuItem
+            selected={true}
+            disabled={isDisabled}
+            // variant='outlined'
+            sx={{ flexDirection: 'column', p: 2 }}
+            // disabled={isDisabled}
+            // sx={borderStyle}
+            // className={style.avatarWrapper}
+            // alignItems="center"
+            // justifyContent="center"
         >
-            <Avatar sx={{ width: '128px', height: '128px', mb: 2 }} src={url} />
+            <Avatar sx={{ width: '128px', height: '128px', mb: 2 }} src={url || 'https://cdn4.iconfinder.com/data/icons/usa-elements-solid-patriotic-and-freedom-1/512/Disneyland-512.png'} />
             <Stack direction="row">
                 <Typography variant="caption" fontSize={12}>
                     Size:{' '}
@@ -25,6 +28,6 @@ export function AvatarCard({ url }: Props) {
                     128x128
                 </Typography>
             </Stack>
-        </Stack>
+        </MenuItem>
     )
 }

@@ -1,45 +1,30 @@
 import { LoadingButton } from '@mui/lab'
-import { Box, Stack, TextField, Typography } from '@mui/material'
+import { Box, Grid, Stack, TextField, Typography } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { InputImage } from 'components'
 import { AvatarCard } from 'components/avatarCard'
 import { useFormik } from 'formik'
-import { ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { botActions } from 'states/slices'
-import { botInfoValidate } from 'utils/validation'
 import { Title } from 'styles'
+import { botInfoValidate } from 'utils/validation'
+import { useUploadImage } from 'hooks'
 export function CreateBotScreen() {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { isLoading } = useAppSelector((state) => state.bot)
 
-    const onUploadAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
-        // if (e.target && e.target.files) {
-        //     // const a = await BotAPI.uploadImage(e.target.files[0])
-        //     console.log(URL.createObjectURL(e.target.files[0]))
-        //     setValues({ ...values, avatarUrl: URL.createObjectURL(e.target.files[0]) })
-        // }
-        // if (e.target && e.target.files) {
-        //     form.append('file', e.target.files[0])
-        //     form.append('upload_preset', 'botAvatar')
-        //     const res = await AxiosClient.post(
-        //         'https://api.cloudinary.com/v1_1/nnaaaa/upload',form
-        //     )
-        //     console.log(e.target.files[0])
-        //     // const a = v2.uploader.upload_large(e.target.files[0])
-        //     // console.log(a)
-        //     setValues({ ...values, avatarUrl: 'vcrewert' })
-        // }
-    }
+    const { onUpload, isLoading: uploadImageLoading } = useUploadImage((url) =>
+        setValues({ ...values, avatarUrl: url })
+    )
 
     const { errors, values, touched, handleSubmit, handleChange, setValues } = useFormik({
         enableReinitialize: true,
         initialValues: {
             name: '',
             description: '',
-            // avatarUrl: '',
+            avatarUrl: '',
         },
         validationSchema: botInfoValidate,
         onSubmit: async (values, { setFieldError }) => {
@@ -60,30 +45,36 @@ export function CreateBotScreen() {
             <Typography variant="h6" color="text.disabled">
                 These info can be changed later
             </Typography>
-            <Stack direction="row" spacing={4} sx={{ mt: 6, flex: 1 }}>
-                <Stack>
-                    <Title>Bot icon</Title>
-                    <InputImage name="avatarFile" onChange={onUploadAvatar}>
-                        <AvatarCard url={''} />
-                    </InputImage>
-                </Stack>
-
-                <Stack spacing={4} sx={{ flex: 1 }}>
+            <Grid container spacing={4} sx={{ mt: 6, flex: 1 }}>
+                <Grid item xs={12} md={3}>
                     <Stack>
+                        <Title>Bot icon</Title>
+                        <InputImage name="avatarFile" onChange={onUpload} isDisabled={uploadImageLoading}>
+                            <AvatarCard
+                                url={values.avatarUrl}
+                                isDisabled={uploadImageLoading}
+                            />
+                        </InputImage>
+                    </Stack>
+                </Grid>
+
+                <Grid item container md={9} spacing={4}>
+                    <Grid item xs={12}>
                         <Title>Name</Title>
                         <TextField
                             name="name"
                             variant="outlined"
                             value={values.name}
+                            fullWidth
                             onChange={handleChange}
                             error={touched.name && Boolean(errors.name)}
                             helperText={touched.name && errors.name}
                         />
-                    </Stack>
+                    </Grid>
 
-                    <Stack>
+                    <Grid item xs={12}>
                         <Title>Description</Title>
-                        <Typography variant="caption" color="text.disabled" gutterBottom>
+                        <Typography component='p' variant="caption" color="text.disabled" gutterBottom>
                             ({values.description.length} characters)
                         </Typography>
                         <TextField
@@ -94,12 +85,13 @@ export function CreateBotScreen() {
                             error={touched.description && Boolean(errors.description)}
                             helperText={touched.description && errors.description}
                             multiline
+                            fullWidth
                             minRows={4}
                             maxRows={7}
                         />
-                    </Stack>
-                </Stack>
-            </Stack>
+                    </Grid>
+                </Grid>
+            </Grid>
 
             <Stack
                 direction="row"

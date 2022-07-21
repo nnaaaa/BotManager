@@ -17,6 +17,10 @@ const memberSlice = createSlice({
     name: 'member',
     initialState,
     reducers: {
+        clear(state) {
+            state.members = []
+            state.errors = null
+        },
         set: (state, action: PayloadAction<MemberEntity[]>) => {
             state.members = action.payload
         },

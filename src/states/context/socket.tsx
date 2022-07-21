@@ -2,6 +2,7 @@ import { Env } from 'configs'
 import Cookies from 'js-cookie'
 import { createContext, ReactNode, useMemo } from 'react'
 import { Manager, Socket } from 'socket.io-client'
+import { useAppSelector } from 'states/hooks'
 
 interface ISocketContext {
     memberSocket: Socket | null
@@ -18,6 +19,7 @@ export const SocketContext = createContext<ISocketContext>({
 })
 
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
+    const {profile} = useAppSelector(state=>state.auth)
     const socket = useMemo(
         () =>
             new Manager(Env.SERVER_HOST, {
@@ -29,7 +31,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
                     },
                 },
             }),
-        []
+        [profile]
     )
 
     const memberSocket = useMemo(() => socket.socket('/member'), [socket])

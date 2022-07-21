@@ -14,15 +14,15 @@ const queryClient = new QueryClient()
 
 root.render(
     // <React.StrictMode>
-    <SocketProvider>
-        <Provider store={store}>
+    <Provider store={store}>
+        <SocketProvider>
             <QueryClientProvider client={queryClient}>
                 <ColorMode>
                     <App />
                 </ColorMode>
             </QueryClientProvider>
-        </Provider>
-    </SocketProvider>
+        </SocketProvider>
+    </Provider>
     // </React.StrictMode>
 )
 

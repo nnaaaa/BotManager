@@ -85,6 +85,11 @@ const botSlice = createSlice({
     name: 'bot',
     initialState,
     reducers: {
+        clear(state) {
+            state.yourBots = []
+            state.profile = null
+            state.errors = null
+        },
         setBot: (state, action: PayloadAction<BotEntity>) => {
             state.profile = action.payload
         },

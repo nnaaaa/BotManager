@@ -11,7 +11,7 @@ import Cookies from 'js-cookie'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
-import { authActions } from 'states/slices'
+import { authActions, botActions, memberActions } from 'states/slices'
 
 export function ProfileButton() {
     const dispatch = useAppDispatch()
@@ -22,6 +22,8 @@ export function ProfileButton() {
 
     const onLogout = () => {
         dispatch(authActions.logout())
+        dispatch(botActions.clear())
+        dispatch(memberActions.clear())
         setToggle((pre) => !pre)
         Cookies.remove('accesstoken')
         Cookies.remove('refreshtoken')
