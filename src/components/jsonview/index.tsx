@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import ReactJson from 'react-json-view-with-toggle'
-import { ColorModeContext } from 'states/context/colorMode'
+import { ColorModeContext } from 'states/contexts/colorMode'
 
 export function JsonView({ json }: { json: Object }) {
     const { mode } = useContext(ColorModeContext)

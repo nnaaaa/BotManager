@@ -1,21 +1,21 @@
-import { ActionEntity } from './action.entity'
-import { ChannelEntity } from './channel.entity'
-import { MemberEntity } from './member.entity'
+import { ActionEntity } from './action.entity';
+import { ChannelEntity } from './channel.entity';
+import { MemberEntity } from './member.entity';
 
 export interface MessageEntity {
-    messageId: string
+  messageId: string;
 
-    content: string
+  content: string;
 
-    images: string[]
+  images: string[];
 
-    createdAt: Date
+  createdAt: Date;
 
-    channel: ChannelEntity
+  channel: ChannelEntity;
 
-    author: MemberEntity
+  author: MemberEntity;
 
-    action: ActionEntity
+  action: ActionEntity;
 
-    replyTo: MessageEntity
+  replyTo: MessageEntity;
 }

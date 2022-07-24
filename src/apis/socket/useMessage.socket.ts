@@ -1,16 +1,18 @@
+import { ReactEntity } from 'entities'
 import { BotEntity } from 'entities/bot.entity'
 import { ButtonEntity } from 'entities/button.entity'
 import { MessageEntity } from 'entities/message.entity'
+import { OptionEntity } from 'entities/option.entity'
 import { useContext, useEffect } from 'react'
-import { SocketContext } from 'states/context/socket'
+import { SocketContext } from 'states/contexts/socket'
 import { SocketErrorDto } from './error.dto'
 
 export const useMessageSocket = (
     bot: BotEntity | undefined | null,
     onCreate: (newMessage: MessageEntity) => void,
-    onUpdate: (newMessage: MessageEntity) => void
+    onUpdate: (newMessage: MessageEntity) => void,
 ) => {
-    const { messageSocket, buttonSocket } = useContext(SocketContext)
+    const { messageSocket, buttonSocket,reactSocket,selectSocket } = useContext(SocketContext)
 
     const getAllFromBot = async () => {
         if (!messageSocket || !bot) return
@@ -31,9 +33,18 @@ export const useMessageSocket = (
         if (!buttonSocket || !bot) return
         buttonSocket.emit('click', button)
     }
+    const clickReact = async (react: ReactEntity) => {
+        if (!reactSocket || !bot) return
+        reactSocket.emit('create', react)
+    }
+
+    const clickSelect = async (option: OptionEntity) => {
+        if (!selectSocket || !bot) return
+        selectSocket.emit('select', option)
+    }
 
     useEffect(() => {
-        if (!messageSocket || !bot) return
+        if (!messageSocket || !reactSocket || !bot) return
         messageSocket.on(
             `botManager/${bot.botId}/message/create`,
             (data: MessageEntity) => {
@@ -47,11 +58,12 @@ export const useMessageSocket = (
             }
         )
 
+
         return () => {
             if (!messageSocket || !bot) return
             messageSocket.off(`botManager/${bot.botId}/message/create`)
         }
     }, [messageSocket])
 
-    return { getAllFromBot, clickButton }
+    return { getAllFromBot, clickButton,clickReact,clickSelect, reactSocket }
 }

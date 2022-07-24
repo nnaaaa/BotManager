@@ -21,7 +21,7 @@ import {
     Quickstart,
 } from 'screens'
 import { classDescriptionList } from 'screens/document/classes/data'
-import { ColorModeContext } from 'states/context/colorMode'
+import { ColorModeContext } from 'states/contexts/colorMode'
 import { Wrapper } from './app.styles'
 import './styles/fonts.css'
 import './styles/reset.css'

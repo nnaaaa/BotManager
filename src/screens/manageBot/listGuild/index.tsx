@@ -1,4 +1,4 @@
-import { PeopleAltOutlined } from '@mui/icons-material'
+import { PeopleAlt, PeopleAltOutlined } from '@mui/icons-material'
 import {
     Avatar,
     Box,
@@ -7,30 +7,36 @@ import {
     ListItemAvatar,
     ListItemButton,
     ListItemText,
-    Stack,
+    Stack
 } from '@mui/material'
+import { useGuildSocket } from 'apis/socket/useGuild.socket'
 import { ExpandButton } from 'components'
 import { useState } from 'react'
 import { useAppSelector } from 'states/hooks'
 
 export function ListGuild() {
     const [isOpen, setOpen] = useState(true)
-
+    const { getOne } = useGuildSocket()
     const { members, isLoading } = useAppSelector((state) => state.member)
+
+    const fetchGuild = async (guildId: string) => {
+        const guild = await getOne(guildId)
+        console.log(guild)
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
             <ExpandButton
                 isLoading={isLoading}
                 isOpen={isOpen}
-                startIcon={<PeopleAltOutlined />}
+                startIcon={<PeopleAlt />}
                 textPrimary="Guilds"
-                textSecondary="Click to see the list of guilds"
+                textSecondary="Manage your guilds"
                 onClick={() => setOpen((pre) => !pre)}
             />
             {isOpen &&
                 members.map(({ guild, memberId, nickname, avatarUrl }) => (
-                    <ListItemButton key={memberId}>
+                    <ListItemButton key={memberId} onClick={()=>fetchGuild(guild.guildId)}>
                         <ListItemAvatar>
                             <Avatar src={guild.avatarUrl} />
                         </ListItemAvatar>

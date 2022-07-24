@@ -1,10 +1,8 @@
 import {
     Add,
     BorderColor,
-    Message,
-    PeopleAlt,
-    Shield,
-    SmartToy,
+    Message, PeopleAlt, Shield,
+    SmartToy
 } from '@mui/icons-material'
 import {
     Button,
@@ -12,7 +10,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Stack,
+    Stack
 } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { Loading } from 'components'
@@ -149,6 +147,8 @@ export function ManageBot() {
                                 </ListItemIcon>
                                 <ListItemText>Created Channel</ListItemText>
                             </ListItemButton>
+
+                            {/* <ListGuild /> */}
                         </Stack>
                     </>
                 )}
@@ -173,3 +173,4 @@ export * from './createBotScreen'
 export * from './general'
 export * from './messageScreen'
 export * from './permissionPicker'
+

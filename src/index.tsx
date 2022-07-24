@@ -5,8 +5,8 @@ import reportWebVitals from './reportWebVitals'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Provider } from 'react-redux'
 import { store } from 'states/store'
-import { ColorMode } from 'states/context/colorMode'
-import { SocketProvider } from 'states/context/socket'
+import { ColorMode } from 'states/contexts/colorMode'
+import { SocketProvider } from 'states/contexts/socket'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

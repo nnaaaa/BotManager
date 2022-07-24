@@ -1,7 +1,7 @@
 import { DarkMode, WbSunny } from '@mui/icons-material'
 import { IconButton, Stack } from '@mui/material'
 import { useContext } from 'react'
-import { ColorModeContext } from 'states/context/colorMode'
+import { ColorModeContext } from 'states/contexts/colorMode'
 
 export function ModeSwitch() {
     const { toggleColorMode, mode } = useContext(ColorModeContext)

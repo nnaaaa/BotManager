@@ -5,8 +5,6 @@ interface Props {
 }
 
 export function AvatarCard({ url,isDisabled }: Props) {
-    
-    console.log(url)
     return (
         <MenuItem
             selected={true}

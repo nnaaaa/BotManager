@@ -1,24 +1,18 @@
-import { MemberEntity } from 'entities/member.entity'
+import { useMemberSocket } from 'apis/socket'
 import { useContext, useEffect } from 'react'
-import { SocketContext } from 'states/context/socket'
+import { SocketContext } from 'states/contexts/socket'
 import { useAppDispatch, useAppSelector } from 'states/hooks'
 import { memberActions } from 'states/slices'
 
 export const useLoadMembers = () => {
     const { memberSocket } = useContext(SocketContext)
     const { profile } = useAppSelector((state) => state.auth)
-
+    const {getJoined} = useMemberSocket()
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        const fetchMember = async () => {
-            if (!memberSocket || !profile) return
-            dispatch(memberActions.startLoading())
-            return await new Promise<MemberEntity[]>((resolve) => {
-                memberSocket.emit('getJoined', (data: MemberEntity[]) => resolve(data))
-            })
-        }
-        fetchMember()
+        dispatch(memberActions.startLoading())
+        getJoined()
             .then((members) => {
                 if (members) {
                     dispatch(memberActions.set(members))

@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useAppDispatch } from 'states/hooks'
 import { botActions } from 'states/slices'
 import { ListBot } from './listBots'
-import { ListGuild } from './listGuild'
+import { ListGuild } from '../manageBot/listGuild'
 import { Left, Right, Wrapper } from './styles'
 
 export function ExploreBot() {

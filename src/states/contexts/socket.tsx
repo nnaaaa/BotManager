@@ -9,6 +9,9 @@ interface ISocketContext {
     roleSocket: Socket | null
     messageSocket: Socket | null
     buttonSocket: Socket | null
+    reactSocket: Socket | null
+    guildSocket: Socket | null
+    selectSocket: Socket | null
 }
 
 export const SocketContext = createContext<ISocketContext>({
@@ -16,6 +19,9 @@ export const SocketContext = createContext<ISocketContext>({
     roleSocket: null,
     messageSocket: null,
     buttonSocket: null,
+    reactSocket: null,
+    guildSocket: null,
+    selectSocket: null
 })
 
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
@@ -34,14 +40,18 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
         [profile]
     )
 
-    const memberSocket = useMemo(() => socket.socket('/member'), [socket])
+    const guildSocket = useMemo(() => socket.socket('/guild'), [socket])
     const roleSocket = useMemo(() => socket.socket('/role'), [socket])
+
+    const memberSocket = useMemo(() => socket.socket('/member'), [socket])
     const messageSocket = useMemo(() => socket.socket('/message'), [socket])
     const buttonSocket = useMemo(() => socket.socket('/button'), [socket])
+    const reactSocket = useMemo(() => socket.socket('/react'), [socket])
+    const selectSocket = useMemo(() => socket.socket('/select'), [socket])
 
     return (
         <SocketContext.Provider
-            value={{ memberSocket, roleSocket, messageSocket, buttonSocket }}
+            value={{ memberSocket, roleSocket, messageSocket, buttonSocket, selectSocket,reactSocket,guildSocket }}
         >
             {children}
         </SocketContext.Provider>

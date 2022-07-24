@@ -1,22 +1,23 @@
 import {
     Avatar,
-    Box,
-    Button,
-    Divider,
+    Box, Divider,
     Grid,
     ListItem,
     ListItemAvatar,
     ListItemButton,
     ListItemText,
     Stack,
-    Typography,
+    Typography
 } from '@mui/material'
 import { JsonView, Markdown } from 'components'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useAppSelector } from 'states/hooks'
 import { Title } from 'styles'
+import { MessageButtons } from './button'
+import { MessageReacts } from './react'
 import { Reply } from './replyTo'
+import { MessageSelect } from './select'
 import { ScrollStyled } from './styles'
 import { useLoadMessage } from './useLoadMessage'
 
@@ -25,7 +26,9 @@ dayjs.extend(relativeTime)
 export function MessageScreen() {
     const { profile } = useAppSelector((state) => state.bot)
 
-    const { activeMessage, messages, setActiveMessage, clickButton } = useLoadMessage()
+    const { activeMessage, messages, setActiveMessage, clickButton, clickReact,clickSelect } =
+        useLoadMessage()
+    
 
     if (!profile) return <></>
 
@@ -71,40 +74,24 @@ export function MessageScreen() {
                                     </Box>
 
                                     <Grid container sx={{ mb: 1 }} spacing={1}>
-                                        {m.action.reacts.map((r) => (
-                                            <Grid item>
-                                                <Button
-                                                    size="small"
-                                                    variant="outlined"
-                                                    startIcon={
-                                                        <Avatar
-                                                            src={r.emoji.imageUrl}
-                                                            sx={{ width: 14, height: 14 }}
-                                                        />
-                                                    }
-                                                >
-                                                    1
-                                                </Button>
-                                            </Grid>
-                                        ))}
+                                        <MessageSelect
+                                            selects={m.action.selects}
+                                            clickSelect={clickSelect}
+                                        />
                                     </Grid>
 
                                     <Grid container sx={{ mb: 1 }} spacing={1}>
-                                        {m.action.buttons.map((b) => (
-                                            <Grid item>
-                                                <Button
-                                                    key={b.buttonId}
-                                                    variant="contained"
-                                                    size="small"
-                                                    sx={{ textTransform: 'initial' }}
-                                                    onClick={() => clickButton(b)}
-                                                    color={b.style}
-                                                    disabled={b.isDisabled}
-                                                >
-                                                    {b.name}
-                                                </Button>
-                                            </Grid>
-                                        ))}
+                                        <MessageReacts
+                                            reacts={m.action.reacts}
+                                            clickReact={clickReact}
+                                        />
+                                    </Grid>
+
+                                    <Grid container sx={{ mb: 1 }} spacing={1}>
+                                        <MessageButtons
+                                            buttons={m.action.buttons}
+                                            clickButton={clickButton}
+                                        />
                                     </Grid>
                                     <Reply replyTo={m.replyTo} />
                                     <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
