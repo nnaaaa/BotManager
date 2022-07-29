@@ -11,7 +11,7 @@ interface Property {
 
 interface Method {
     name: string
-    return: DataType | 'void'
+    return: DataType
     parameter: Property[]
 }
 

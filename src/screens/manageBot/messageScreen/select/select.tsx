@@ -18,6 +18,7 @@ export function SelectOption({ select,clickSelect }: Props) {
                 // value={select.value}
                 size="small"
                 value={selected}
+                fullWidth
             >
                 {select.options.map((opt) => (
                     <MenuItem

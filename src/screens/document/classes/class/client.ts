@@ -24,7 +24,10 @@ export const Client: ClassDescription = {
     methods: [
         {
             name: 'login',
-            return: 'void',
+            return: {
+                name: 'void',
+                url: ''
+            },
             parameter: [
                 {
                     name: 'token',
