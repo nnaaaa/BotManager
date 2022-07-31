@@ -13,9 +13,8 @@ export function SelectOption({ select,clickSelect }: Props) {
     const [selected,setSelected] = useState<string | undefined>(select.options[0].value)
 
     return (
-        <Grid item>
+        <Grid item xs={12}>
             <Select
-                // value={select.value}
                 size="small"
                 value={selected}
                 fullWidth

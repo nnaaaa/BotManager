@@ -7,6 +7,9 @@ export class BotAPI {
     static namespace = 'bot'
 
     static async create(createBotDto: CreateBotDto) {
+        if (createBotDto.avatarUrl === '') {
+            delete createBotDto.avatarUrl
+        }
         const res = await AxiosClient.post<any, AxiosResponse<BotEntity>>(
             `${BotAPI.namespace}`,
             createBotDto
