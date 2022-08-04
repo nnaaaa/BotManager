@@ -5,8 +5,6 @@ import {
     ButtonStyle,
     MessageButton,
     MessageClient,
-    MessageSelect,
-    MessageSelectOption,
 } from 'disney.js'
 
 class TestClient extends MessageClient {

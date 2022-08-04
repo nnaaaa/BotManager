@@ -58,6 +58,11 @@ export function Document() {
                                 />
                             </TreeItem>
                             <TreeItem
+                                nodeId="Markdown"
+                                label="Markdown"
+                                onClick={() => navigate('/doc/markdown')}
+                            />
+                            <TreeItem
                                 nodeId="4"
                                 label="Class"
                                 onClick={() => navigate(`/doc/classes/Client`)}

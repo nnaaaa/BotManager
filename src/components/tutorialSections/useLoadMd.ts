@@ -15,7 +15,7 @@ export const useLoadMdText = (fileNames: string[]) => {
         const loadMd = async () => {
             setSections([])
             for (const name of fileNames) {
-                const module = await import(`./md/${name}`)
+                const module = await import(`./md/${name}.md`)
                 const res = await fetch(module.default)
                 const text = await res.text()
                 setSections((pre) => [...pre, { title: name, text }])

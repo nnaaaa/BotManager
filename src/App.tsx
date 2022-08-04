@@ -4,21 +4,16 @@ import { useLoadMembers, useLogin } from 'hooks'
 import { useContext } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import {
-    Authentication,
-    ClassDescriptionScreen,
+    Authentication, BotRegister, ClassDescriptionScreen,
     Classes,
     CommandScreen,
     CreateBotScreen,
     Document,
     ExploreBot,
     GeneralInfomation,
-    Home,
-    ManageBot,
+    Home, Interactions, ManageBot,
     MessageScreen,
-    PermissionPicker,
-    BotRegister,
-    Quickstart,
-    Interactions,
+    PermissionPicker, Quickstart
 } from 'screens'
 import { classDescriptionList } from 'screens/document/classes/data'
 import { ColorModeContext } from 'states/contexts/colorMode'
@@ -41,6 +36,56 @@ function App() {
                     <Routes>
                         <Route element={<Authentication />} path="auth" />
                         <Route element={<Document />} path="doc">
+                            <Route element={<Quickstart />} path="quickstart">
+                                <Route element={<BotRegister />} path="register" />
+                                <Route
+                                    element={
+                                        <TutorialSections
+                                            fileNames={['install', 'usage']}
+                                            header={'Implement with javascript'}
+                                        />
+                                    }
+                                    path="implement"
+                                />
+                            </Route>
+                            <Route element={<Interactions />} path="interactions">
+                                <Route
+                                    element={
+                                        <TutorialSections
+                                            fileNames={[
+                                                'createButton',
+                                                'eventButton',
+                                            ]}
+                                            header={'How to use buttons'}
+                                        />
+                                    }
+                                    path="buttons"
+                                />
+                                <Route
+                                    element={
+                                        <TutorialSections
+                                            fileNames={[
+                                                'createSelect',
+                                                'eventSelect',
+                                            ]}
+                                            header={'How to use selects'}
+                                        />
+                                    }
+                                    path="selects"
+                                />
+                            </Route>
+                            <Route
+                                element={
+                                    <TutorialSections
+                                        fileNames={[
+                                            'markdownBasicStyle',
+                                            'markdownAdvancedStyle'
+                                        ]}
+                                        header={'Use markdown in message'}
+                                    />
+                                }
+                                path="markdown"
+                            />
                             <Route element={<Classes />} path="classes">
                                 {classDescriptionList.map((classDescription) => (
                                     <Route
@@ -53,44 +98,6 @@ function App() {
                                         path={classDescription.name}
                                     />
                                 ))}
-                            </Route>
-                            <Route element={<Interactions />} path="Interactions">
-                                <Route
-                                    element={
-                                        <TutorialSections
-                                            fileNames={[
-                                                'createButton.md',
-                                                'eventButton.md',
-                                            ]}
-                                            header={'How to use buttons'}
-                                        />
-                                    }
-                                    path="buttons"
-                                />
-                                <Route
-                                    element={
-                                        <TutorialSections
-                                            fileNames={[
-                                                'createSelect.md',
-                                                'eventSelect.md',
-                                            ]}
-                                            header={'How to use selects'}
-                                        />
-                                    }
-                                    path="selects"
-                                />
-                            </Route>
-                            <Route element={<Quickstart />} path="quickstart">
-                                <Route element={<BotRegister />} path="register" />
-                                <Route
-                                    element={
-                                        <TutorialSections
-                                            fileNames={['install.md', 'usage.md']}
-                                            header={'Implement with javascript'}
-                                        />
-                                    }
-                                    path="implement"
-                                />
                             </Route>
                         </Route>
                         <Route path="bot">

@@ -109,7 +109,7 @@ export const MessageAction: ClassDescription = {
             parameter: [
                 {
                     name: 'cb',
-                    type: { url: '', name: '(b: ButtonEntity) => void' },
+                    type: { url: '', name: '(i) => void' },
                     description: 'listen button click event',
                 },
             ],
@@ -151,7 +151,7 @@ export const MessageAction: ClassDescription = {
             parameter: [
                 {
                     name: 'cb',
-                    type: { url: '', name: '(o: OptionEntity) => void' },
+                    type: { url: '', name: '(i) => void' },
                     description: 'listen select event',
                 },
             ],
