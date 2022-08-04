@@ -51,7 +51,6 @@ export class BotAPI {
         return res
     }
 
-    
     static async generateNewSecretKey(genKeyDto: GenSecretKeyDto) {
         const res = await AxiosClient.post<GenSecretKeyDto, AxiosResponse<string>>(
             `${BotAPI.namespace}/genSecretKey`,

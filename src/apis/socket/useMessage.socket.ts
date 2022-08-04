@@ -10,9 +10,10 @@ import { SocketErrorDto } from './error.dto'
 export const useMessageSocket = (
     bot: BotEntity | undefined | null,
     onCreate: (newMessage: MessageEntity) => void,
-    onUpdate: (newMessage: MessageEntity) => void,
+    onUpdate: (newMessage: MessageEntity) => void
 ) => {
-    const { messageSocket, buttonSocket,reactSocket,selectSocket } = useContext(SocketContext)
+    const { messageSocket, buttonSocket, reactSocket, selectSocket } =
+        useContext(SocketContext)
 
     const getAllFromBot = async () => {
         if (!messageSocket || !bot) return
@@ -58,12 +59,11 @@ export const useMessageSocket = (
             }
         )
 
-
         return () => {
             if (!messageSocket || !bot) return
             messageSocket.off(`botManager/${bot.botId}/message/create`)
         }
     }, [messageSocket])
 
-    return { getAllFromBot, clickButton,clickReact,clickSelect, reactSocket }
+    return { getAllFromBot, clickButton, clickReact, clickSelect, reactSocket }
 }

@@ -3,22 +3,17 @@ import { Grid, MenuItem, Select, Typography } from '@mui/material'
 import { useState } from 'react'
 import { OptionEntity } from 'entities/option.entity'
 
-interface Props{
+interface Props {
     clickSelect: (option: OptionEntity) => void
     select: SelectEntity
-
 }
 
-export function SelectOption({ select,clickSelect }: Props) {
-    const [selected,setSelected] = useState<string | undefined>(select.options[0].value)
+export function SelectOption({ select, clickSelect }: Props) {
+    const [selected, setSelected] = useState<string | undefined>(select.options[0].value)
 
     return (
         <Grid item xs={12}>
-            <Select
-                size="small"
-                value={selected}
-                fullWidth
-            >
+            <Select size="small" value={selected} fullWidth>
                 {select.options.map((opt) => (
                     <MenuItem
                         key={opt.optionId}
@@ -27,7 +22,6 @@ export function SelectOption({ select,clickSelect }: Props) {
                             setSelected(opt.value)
                             clickSelect(opt as OptionEntity)
                         }}
-
                     >
                         <Typography noWrap>{opt.value}</Typography>
                     </MenuItem>

@@ -1,7 +1,5 @@
 import { Outlet } from 'react-router-dom'
 
-export function Quickstart() {
+export function Interactions() {
     return <Outlet />
 }
-
-export * from './register'

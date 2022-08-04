@@ -49,7 +49,11 @@ export function CreateBotScreen() {
                 <Grid item xs={12} md={3}>
                     <Stack>
                         <Title>Bot icon</Title>
-                        <InputImage name="avatarFile" onChange={onUpload} isDisabled={uploadImageLoading}>
+                        <InputImage
+                            name="avatarFile"
+                            onChange={onUpload}
+                            isDisabled={uploadImageLoading}
+                        >
                             <AvatarCard
                                 url={values.avatarUrl}
                                 isDisabled={uploadImageLoading}
@@ -74,7 +78,12 @@ export function CreateBotScreen() {
 
                     <Grid item xs={12}>
                         <Title>Description</Title>
-                        <Typography component='p' variant="caption" color="text.disabled" gutterBottom>
+                        <Typography
+                            component="p"
+                            variant="caption"
+                            color="text.disabled"
+                            gutterBottom
+                        >
                             ({values.description.length} characters)
                         </Typography>
                         <TextField

@@ -18,7 +18,7 @@ interface Method {
 export interface ClassDescription {
     name: string
     description: string
-    type: 'class' | 'interface' | 'abstract'
+    type: 'class' | 'interface' | 'abstract' | 'enum'
     properties: Property[]
     methods: Method[]
 }

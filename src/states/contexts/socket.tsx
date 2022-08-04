@@ -21,11 +21,11 @@ export const SocketContext = createContext<ISocketContext>({
     buttonSocket: null,
     reactSocket: null,
     guildSocket: null,
-    selectSocket: null
+    selectSocket: null,
 })
 
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
-    const {profile} = useAppSelector(state=>state.auth)
+    const { profile } = useAppSelector((state) => state.auth)
     const socket = useMemo(
         () =>
             new Manager(Env.SERVER_HOST, {
@@ -51,7 +51,15 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <SocketContext.Provider
-            value={{ memberSocket, roleSocket, messageSocket, buttonSocket, selectSocket,reactSocket,guildSocket }}
+            value={{
+                memberSocket,
+                roleSocket,
+                messageSocket,
+                buttonSocket,
+                selectSocket,
+                reactSocket,
+                guildSocket,
+            }}
         >
             {children}
         </SocketContext.Provider>

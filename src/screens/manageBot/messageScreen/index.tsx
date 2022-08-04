@@ -1,13 +1,14 @@
 import {
     Avatar,
-    Box, Divider,
+    Box,
+    Divider,
     Grid,
     ListItem,
     ListItemAvatar,
     ListItemButton,
     ListItemText,
     Stack,
-    Typography
+    Typography,
 } from '@mui/material'
 import { JsonView, Markdown } from 'components'
 import dayjs from 'dayjs'
@@ -26,9 +27,14 @@ dayjs.extend(relativeTime)
 export function MessageScreen() {
     const { profile } = useAppSelector((state) => state.bot)
 
-    const { activeMessage, messages, setActiveMessage, clickButton, clickReact,clickSelect } =
-        useLoadMessage()
-    
+    const {
+        activeMessage,
+        messages,
+        setActiveMessage,
+        clickButton,
+        clickReact,
+        clickSelect,
+    } = useLoadMessage()
 
     if (!profile) return <></>
 

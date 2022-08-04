@@ -1,9 +1,8 @@
-import { FileAPI } from "apis/rest/file.api"
-import { ChangeEvent, useState } from "react"
+import { FileAPI } from 'apis/rest/file.api'
+import { ChangeEvent, useState } from 'react'
 
-
-export const useUploadImage = (setImageUrl: (url:string)=>void) => {
-    const [isLoading,setIsLoading] = useState(false)
+export const useUploadImage = (setImageUrl: (url: string) => void) => {
+    const [isLoading, setIsLoading] = useState(false)
 
     const onUpload = async (e: ChangeEvent<HTMLInputElement>) => {
         try {
@@ -12,14 +11,12 @@ export const useUploadImage = (setImageUrl: (url:string)=>void) => {
                 const res = await FileAPI.uploadImage(e.target.files[0])
                 setImageUrl(res.data)
             }
-        }
-        catch (e) {
+        } catch (e) {
             console.error(e)
-        }
-        finally {
+        } finally {
             setIsLoading(false)
         }
     }
 
-    return {onUpload,isLoading}
+    return { onUpload, isLoading }
 }

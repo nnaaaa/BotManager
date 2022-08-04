@@ -58,8 +58,15 @@ export function GeneralInfomation() {
                 <Grid item xs={12} md={3}>
                     <Stack>
                         <Title>Bot icon</Title>
-                        <InputImage name="avatarFile" onChange={onUpload} isDisabled={uploadImageLoading}>
-                            <AvatarCard url={values.avatarUrl} isDisabled={uploadImageLoading}/>
+                        <InputImage
+                            name="avatarFile"
+                            onChange={onUpload}
+                            isDisabled={uploadImageLoading}
+                        >
+                            <AvatarCard
+                                url={values.avatarUrl}
+                                isDisabled={uploadImageLoading}
+                            />
                         </InputImage>
                     </Stack>
                 </Grid>

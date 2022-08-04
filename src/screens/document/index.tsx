@@ -21,19 +21,40 @@ export function Document() {
                             multiSelect
                         >
                             <TreeItem
-                                nodeId="1"
+                                nodeId="Quickstart"
                                 label="Quick Start"
                                 onClick={() => navigate('/doc/quickstart/register')}
                             >
                                 <TreeItem
-                                    nodeId="2"
+                                    nodeId="Register"
                                     label="Register"
                                     onClick={() => navigate(`/doc/quickstart/register`)}
                                 />
                                 <TreeItem
-                                    nodeId="3"
+                                    nodeId="Implement"
                                     label="Implement"
                                     onClick={() => navigate(`/doc/quickstart/implement`)}
+                                />
+                            </TreeItem>
+                            <TreeItem
+                                nodeId="Interaction"
+                                label="Interactions"
+                                onClick={() => navigate('/doc/interactions')}
+                            >
+                                <TreeItem
+                                    nodeId="Buttons"
+                                    label="Buttons"
+                                    onClick={() => navigate(`/doc/interactions/buttons`)}
+                                />
+                                <TreeItem
+                                    nodeId="Selects"
+                                    label="Selects"
+                                    onClick={() => navigate(`/doc/interactions/selects`)}
+                                />
+                                <TreeItem
+                                    nodeId="Reacts"
+                                    label="Reacts"
+                                    onClick={() => navigate(`/doc/interactions/reacts`)}
                                 />
                             </TreeItem>
                             <TreeItem
@@ -43,7 +64,7 @@ export function Document() {
                             >
                                 {classDescriptionList.map((classDescription, i) => (
                                     <TreeItem
-                                        nodeId={`${i + 5}`}
+                                        nodeId={classDescription.name + i}
                                         key={classDescription.name + i}
                                         label={classDescription.name}
                                         onClick={() =>
@@ -66,5 +87,6 @@ export function Document() {
     )
 }
 
+export * from './interactions'
 export * from './classes'
 export * from './quickstart'

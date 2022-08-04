@@ -1,12 +1,12 @@
-import { ActionEntity } from "./action.entity"
-import { OptionEntity } from "./option.entity"
+import { ActionEntity } from './action.entity'
+import { OptionEntity } from './option.entity'
 
-export enum SelectStyle{
+export enum SelectStyle {
     PRIMARY = 'primary',
     SECONDARY = 'secondary',
 }
 
-export interface SelectEntity{
+export interface SelectEntity {
     selectId: string
 
     customId: string

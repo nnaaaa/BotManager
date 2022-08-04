@@ -1,6 +1,6 @@
-import { ActionEntity } from "./action.entity"
+import { ActionEntity } from './action.entity'
 
-export enum ButtonStyle{
+export enum ButtonStyle {
     PRIMARY = 'primary',
     SECONDARY = 'secondary',
     SUCCESS = 'success',
@@ -18,6 +18,6 @@ export interface ButtonEntity {
     isDisabled: boolean
 
     style: ButtonStyle
-    
+
     action: ActionEntity
 }

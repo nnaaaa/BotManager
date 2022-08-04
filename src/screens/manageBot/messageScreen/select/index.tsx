@@ -4,10 +4,10 @@ import { SelectOption } from './select'
 
 interface Props {
     selects: SelectEntity[]
-    clickSelect: (option:OptionEntity)=> void
+    clickSelect: (option: OptionEntity) => void
 }
 
-export function MessageSelect({ selects,clickSelect }: Props) {
+export function MessageSelect({ selects, clickSelect }: Props) {
     return (
         <>
             {selects.map((select) => (

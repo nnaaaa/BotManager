@@ -56,8 +56,7 @@ export const MessageService: ClassDescription = {
                 {
                     name: 'message',
                     type: { url: 'BotInputMessage', name: 'BotInputMessage' },
-                    description:
-                        'edit the current message which sent by the service',
+                    description: 'edit the current message which sent by the service',
                 },
             ],
         },

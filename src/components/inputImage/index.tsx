@@ -8,10 +8,14 @@ interface IProps {
     isDisabled?: boolean
 }
 
-export function InputImage({ name, onChange,isDisabled, children }: IProps) {
+export function InputImage({ name, onChange, isDisabled, children }: IProps) {
     const id = uid()
     return (
-        <InputLabel htmlFor={isDisabled ? '' : id} sx={{ color: 'primary.main' }} disabled={isDisabled}>
+        <InputLabel
+            htmlFor={isDisabled ? '' : id}
+            sx={{ color: 'primary.main' }}
+            disabled={isDisabled}
+        >
             <input
                 name={name}
                 accept="image/*"

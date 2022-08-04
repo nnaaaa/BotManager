@@ -31,5 +31,5 @@ export const useMemberSocket = () => {
         })
     }
 
-    return { joinGuild,getJoined }
+    return { joinGuild, getJoined }
 }

@@ -2,21 +2,30 @@ import { Alert, Box, Grid, Hidden, MenuItem, MenuList, Typography } from '@mui/m
 import { Markdown } from 'components/markdown'
 import { useState } from 'react'
 import { useScrollToElement } from 'react-use-scroll-to-element-hook'
+import { LazyLoading } from './styles'
 import { useLoadMdText } from './useLoadMd'
-export function Implement() {
+
+interface Props {
+    fileNames: string[]
+    header: string
+}
+
+export function TutorialSections({ fileNames, header }: Props) {
     const [curSectionIndex, setCurSectionIndex] = useState(0)
-    const { sections, error } = useLoadMdText()
+    const { sections, error, loading } = useLoadMdText(fileNames)
     const { getScrollToElementRef, scrollToElementClickHandler } = useScrollToElement(
         sections.map((s) => s.title)
     )
 
     if (error) return <Alert severity="error">{error}</Alert>
 
+    if (loading) return <LazyLoading />
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} md={9}>
                 <Typography variant="h4" fontWeight="bold">
-                    Implement Code with Javascript
+                    {header}
                 </Typography>
                 {sections.map((section, index) => {
                     return (

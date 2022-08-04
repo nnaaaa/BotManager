@@ -26,7 +26,7 @@ export const Client: ClassDescription = {
             name: 'login',
             return: {
                 name: 'void',
-                url: ''
+                url: '',
             },
             parameter: [
                 {

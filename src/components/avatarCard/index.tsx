@@ -4,7 +4,7 @@ interface Props {
     isDisabled?: boolean
 }
 
-export function AvatarCard({ url,isDisabled }: Props) {
+export function AvatarCard({ url, isDisabled }: Props) {
     return (
         <MenuItem
             selected={true}
@@ -17,7 +17,13 @@ export function AvatarCard({ url,isDisabled }: Props) {
             // alignItems="center"
             // justifyContent="center"
         >
-            <Avatar sx={{ width: '128px', height: '128px', mb: 2 }} src={url || 'https://cdn4.iconfinder.com/data/icons/usa-elements-solid-patriotic-and-freedom-1/512/Disneyland-512.png'} />
+            <Avatar
+                sx={{ width: '128px', height: '128px', mb: 2 }}
+                src={
+                    url ||
+                    'https://cdn4.iconfinder.com/data/icons/usa-elements-solid-patriotic-and-freedom-1/512/Disneyland-512.png'
+                }
+            />
             <Stack direction="row">
                 <Typography variant="caption" fontSize={12}>
                     Size:{' '}

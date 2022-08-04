@@ -7,7 +7,7 @@ import {
     ListItemAvatar,
     ListItemButton,
     ListItemText,
-    Stack
+    Stack,
 } from '@mui/material'
 import { useGuildSocket } from 'apis/socket/useGuild.socket'
 import { ExpandButton } from 'components'
@@ -36,7 +36,10 @@ export function ListGuild() {
             />
             {isOpen &&
                 members.map(({ guild, memberId, nickname, avatarUrl }) => (
-                    <ListItemButton key={memberId} onClick={()=>fetchGuild(guild.guildId)}>
+                    <ListItemButton
+                        key={memberId}
+                        onClick={() => fetchGuild(guild.guildId)}
+                    >
                         <ListItemAvatar>
                             <Avatar src={guild.avatarUrl} />
                         </ListItemAvatar>

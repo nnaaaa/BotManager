@@ -1,5 +1,4 @@
-import { ClassDescription } from "./type";
-
+import { ClassDescription } from './type'
 
 export const MarkdownBuilder: ClassDescription = {
     name: 'MarkdownBuilder',
@@ -132,5 +131,5 @@ export const MarkdownBuilder: ClassDescription = {
                 },
             ],
         },
-    ]
+    ],
 }

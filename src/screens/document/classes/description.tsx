@@ -27,11 +27,13 @@ export function ClassDescriptionScreen({ description }: Props) {
             <Grid container>
                 <Grid item xs={12} md={6}>
                     <Stack spacing={2}>
-                        {description.properties.length > 0 && <ExpandButton
-                            isOpen={isOpenProps}
-                            onClick={() => setOpenProps((pre) => !pre)}
-                            textPrimary="Properties"
-                        />}
+                        {description.properties.length > 0 && (
+                            <ExpandButton
+                                isOpen={isOpenProps}
+                                onClick={() => setOpenProps((pre) => !pre)}
+                                textPrimary="Properties"
+                            />
+                        )}
                         {isOpenProps &&
                             description.properties.map((property) => (
                                 <ListItem key={property.name}>
@@ -54,11 +56,13 @@ export function ClassDescriptionScreen({ description }: Props) {
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Stack spacing={2}>
-                        {description.methods.length > 0 && <ExpandButton
-                            isOpen={isOpenMethods}
-                            onClick={() => setOpenMethods((pre) => !pre)}
-                            textPrimary="Methods"
-                        />}
+                        {description.methods.length > 0 && (
+                            <ExpandButton
+                                isOpen={isOpenMethods}
+                                onClick={() => setOpenMethods((pre) => !pre)}
+                                textPrimary="Methods"
+                            />
+                        )}
                         {isOpenMethods &&
                             description.methods.map((method) => (
                                 <ListItem key={method.name}>
@@ -107,7 +111,9 @@ export function ClassDescriptionScreen({ description }: Props) {
                                     </Typography>
                                     <Typography fontFamily="Cascadia">:</Typography>
                                     {!method.return.url ? (
-                                        <Typography color="primary">{method.return.name}</Typography>
+                                        <Typography color="primary">
+                                            {method.return.name}
+                                        </Typography>
                                     ) : (
                                         <Link
                                             component={RouterLink}

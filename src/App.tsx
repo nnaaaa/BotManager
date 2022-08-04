@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import { Header } from 'components'
+import { Header, TutorialSections } from 'components'
 import { useLoadMembers, useLogin } from 'hooks'
 import { useContext } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
@@ -16,9 +16,9 @@ import {
     ManageBot,
     MessageScreen,
     PermissionPicker,
-    Implement,
     BotRegister,
     Quickstart,
+    Interactions,
 } from 'screens'
 import { classDescriptionList } from 'screens/document/classes/data'
 import { ColorModeContext } from 'states/contexts/colorMode'
@@ -54,9 +54,43 @@ function App() {
                                     />
                                 ))}
                             </Route>
+                            <Route element={<Interactions />} path="Interactions">
+                                <Route
+                                    element={
+                                        <TutorialSections
+                                            fileNames={[
+                                                'createButton.md',
+                                                'eventButton.md',
+                                            ]}
+                                            header={'How to use buttons'}
+                                        />
+                                    }
+                                    path="buttons"
+                                />
+                                <Route
+                                    element={
+                                        <TutorialSections
+                                            fileNames={[
+                                                'createSelect.md',
+                                                'eventSelect.md',
+                                            ]}
+                                            header={'How to use selects'}
+                                        />
+                                    }
+                                    path="selects"
+                                />
+                            </Route>
                             <Route element={<Quickstart />} path="quickstart">
                                 <Route element={<BotRegister />} path="register" />
-                                <Route element={<Implement />} path="implement" />
+                                <Route
+                                    element={
+                                        <TutorialSections
+                                            fileNames={['install.md', 'usage.md']}
+                                            header={'Implement with javascript'}
+                                        />
+                                    }
+                                    path="implement"
+                                />
                             </Route>
                         </Route>
                         <Route path="bot">

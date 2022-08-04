@@ -7,7 +7,7 @@ import { memberActions } from 'states/slices'
 export const useLoadMembers = () => {
     const { memberSocket } = useContext(SocketContext)
     const { profile } = useAppSelector((state) => state.auth)
-    const {getJoined} = useMemberSocket()
+    const { getJoined } = useMemberSocket()
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -16,8 +16,7 @@ export const useLoadMembers = () => {
             .then((members) => {
                 if (members) {
                     dispatch(memberActions.set(members))
-                }
-                else {
+                } else {
                     dispatch(memberActions.clear())
                 }
             })

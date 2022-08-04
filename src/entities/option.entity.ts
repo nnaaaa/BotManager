@@ -1,7 +1,6 @@
-import { SelectEntity } from "./select.entity"
+import { SelectEntity } from './select.entity'
 
-
-export interface OptionEntity{
+export interface OptionEntity {
     optionId: string
 
     value: string

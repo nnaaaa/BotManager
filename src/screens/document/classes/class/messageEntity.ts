@@ -31,9 +31,9 @@ export const MessageEntity: ClassDescription = {
             description: 'author of the message',
         },
         {
-            name: 'reacts',
-            type: { name: 'ReactEntity[]', url: 'ReactEntity' },
-            description: 'list of reactions',
+            name: 'action',
+            type: { name: 'ActionEntity', url: 'ActionEntity' },
+            description: 'action of the message',
         },
         {
             name: 'replyTo',

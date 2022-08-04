@@ -1,7 +1,7 @@
-import { AxiosResponse } from "axios"
-import { AxiosClient } from "./axios"
+import { AxiosResponse } from 'axios'
+import { AxiosClient } from './axios'
 
-export class FileAPI{
+export class FileAPI {
     static namespace = 'file'
     static async uploadImage(file: File) {
         const formData = new FormData()
